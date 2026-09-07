@@ -56,7 +56,9 @@ a:hover{text-decoration:underline}
   max-width:var(--maxw);margin:0 auto;padding:0 24px;min-height:64px;
   display:flex;align-items:center;gap:26px;
 }
-.logo{display:flex;align-items:center;gap:7px;font-weight:700;font-size:25px;letter-spacing:-.02em}
+.logo{display:flex;align-items:center;gap:7px;font-weight:700;font-size:25px;letter-spacing:-.02em;
+  border:0;background:transparent;padding:0;color:inherit;font-family:inherit;line-height:1;cursor:pointer}
+.logo:hover{opacity:.75}
 .logo svg{display:block}
 .nav{display:flex;align-items:center;gap:20px;font-size:15px;color:var(--ink-2);flex-wrap:nowrap;min-width:0;overflow:hidden}
 .nav span{white-space:nowrap;cursor:default}
@@ -310,7 +312,7 @@ a:hover{text-decoration:underline}
 <section class="screen is-active" id="s1">
   <header class="hdr">
     <div class="hdr-in">
-      <div class="logo"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</div>
+      <button type="button" class="logo" data-reset title="Начать сценарий заново"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</button>
       <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Коммерческая</span><span>Оценка</span><span>Ипотека</span><span style="color:var(--muted)">Glorax Development</span></nav>
       <div class="hdr-right">
         <div class="icons">
@@ -379,7 +381,7 @@ a:hover{text-decoration:underline}
 <section class="screen" id="s2">
   <header class="hdr">
     <div class="hdr-in">
-      <div class="logo"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>Циан</div>
+      <button type="button" class="logo" data-reset title="Начать сценарий заново"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>Циан</button>
       <nav class="nav"><span>Для профи ↗</span><span>Что нового?</span></nav>
       <div class="hdr-right">
         <div class="icons">
@@ -598,7 +600,7 @@ a:hover{text-decoration:underline}
 <section class="screen" id="s4">
   <header class="hdr">
     <div class="hdr-in">
-      <div class="logo"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</div>
+      <button type="button" class="logo" data-reset title="Начать сценарий заново"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</button>
       <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Коммерческая</span><span>Оценка</span><span>Ипотека</span><span style="color:var(--muted)">Glorax Development</span></nav>
       <div class="hdr-right">
         <div class="icons">
@@ -812,6 +814,7 @@ a:hover{text-decoration:underline}
       else { openModal(false); show(s); }
       return;
     }
+    if(e.target.closest('[data-reset]')){ e.preventDefault(); resetAll(); return; }
     var t = e.target.closest('[data-toast]');
     if(t){ toast(t.dataset.toast); }
   });
@@ -856,12 +859,13 @@ a:hover{text-decoration:underline}
   }
   recalc();
 
-  document.getElementById('restartBtn').addEventListener('click', function(){
+  function resetAll(){
     openModal(false);
     document.querySelector('[data-plan="single"]').click();
     setPromo(true);
     show('s1');
-  });
+  }
+  document.getElementById('restartBtn').addEventListener('click', resetAll);
 
   markSteps();
 })();
