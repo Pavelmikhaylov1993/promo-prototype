@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Промокод в Циан</title>
+<style>
+:root{
+  --blue:#0468ff;
+  --blue-hover:#0053d6;
+  --blue-soft:#eaf2ff;
+  --ink:#121212;
+  --ink-2:#2f3034;
+  --muted:#7a7f8a;
+  --muted-2:#9aa0ac;
+  --line:#e6e9f0;
+  --line-2:#eff1f6;
+  --page:#f1f3f7;
+  --card:#ffffff;
+  --green:#1aa053;
+  --green-soft:#e4f6ea;
+  --red:#e5352d;
+  --orange:#f5a623;
+  --violet:#f3edff;
+  --chat:#e4eefc;
+  --shadow:0 2px 10px rgba(16,32,64,.06);
+  --radius:14px;
+  --maxw:1360px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--page);
+  color:var(--ink);
+  font-family:"Golos Text","PT Root UI",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:15px;
+  line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:76px;
+}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--blue);text-decoration:none;cursor:pointer}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+/* ---------- screens ---------- */
+.screen{display:none}
+.screen.is-active{display:block}
+
+/* ---------- header ---------- */
+.hdr{
+  background:#fff;border-bottom:1px solid var(--line-2);
+  position:sticky;top:0;z-index:30;
+}
+.hdr-in{
+  max-width:var(--maxw);margin:0 auto;padding:0 24px;min-height:64px;
+  display:flex;align-items:center;gap:26px;
+}
+.logo{display:flex;align-items:center;gap:7px;font-weight:700;font-size:25px;letter-spacing:-.02em}
+.logo svg{display:block}
+.nav{display:flex;align-items:center;gap:20px;font-size:15px;color:var(--ink-2);flex-wrap:nowrap;min-width:0;overflow:hidden}
+.nav span{white-space:nowrap;cursor:default}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.icons{display:flex;align-items:center;gap:14px;color:var(--blue)}
+.icons i{position:relative;display:block;width:22px;height:22px}
+.dot{position:absolute;top:-1px;right:-2px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid #fff}
+.btn{
+  border:0;border-radius:9px;background:var(--blue);color:#fff;font-weight:500;
+  padding:11px 18px;transition:background .15s;
+}
+.btn:hover{background:var(--blue-hover)}
+.btn.ghost{background:#fff;color:var(--blue);border:1px solid #cddffb}
+.btn:disabled{background:#eceff4;color:#b3b8c2;cursor:not-allowed}
+.ava{width:38px;height:38px;border-radius:50%;background:#dfe3ea;display:grid;place-items:center;font-size:13px;color:#7c828e;font-weight:500;overflow:hidden}
+
+/* ---------- screen 1: chat ---------- */
+.chat-wrap{max-width:var(--maxw);margin:0 auto;background:#fff;display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 140px)}
+.dlg-col{border-right:1px solid var(--line-2);padding:18px 0}
+.dlg-head{font-size:19px;font-weight:600;padding:0 22px 16px;display:flex;align-items:center;gap:8px}
+.dlg{display:flex;gap:12px;padding:12px 22px;background:#f7f9fc}
+.dlg-ava{width:44px;height:44px;border-radius:11px;background:var(--blue);display:grid;place-items:center;flex:none;position:relative}
+.dlg-ava .star{position:absolute;top:-3px;right:-3px;width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:9px;display:grid;place-items:center;border:2px solid #fff}
+.dlg-name{font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.dlg-name time{font-weight:400;color:var(--muted-2);font-size:13px}
+.dlg-txt{color:var(--blue);font-size:14px}
+.chat-col{display:flex;flex-direction:column}
+.chat-top{padding:14px 24px 12px;border-bottom:1px solid var(--line-2)}
+.chat-title{text-align:center;font-weight:600;font-size:17px}
+.chat-sub{text-align:center;color:var(--muted-2);font-size:13px;margin-top:2px}
+.offer{display:flex;align-items:center;gap:14px;padding:14px 24px;border-bottom:1px solid var(--line-2)}
+.offer img,.offer .ph{width:56px;height:44px;border-radius:8px;object-fit:cover;background:#d9dee6;flex:none}
+.offer-main{flex:1;min-width:0}
+.offer-t{font-weight:500}
+.offer-m{color:var(--muted);font-size:13px;margin-top:3px;display:flex;gap:14px;align-items:center}
+.chat-body{
+  flex:1;padding:22px 24px 26px;position:relative;
+  background-color:var(--chat);
+  background-image:var(--doodles);
+  background-size:260px 260px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:14px;min-height:420px;
+}
+.daychip{align-self:center;background:rgba(255,255,255,.75);color:#5b6472;font-size:13px;padding:4px 12px;border-radius:20px;position:absolute;top:16px;left:50%;transform:translateX(-50%)}
+.bubble{
+  background:#fff;border-radius:14px;padding:16px 18px;max-width:420px;box-shadow:0 1px 3px rgba(20,40,80,.08);
+  font-size:15px;line-height:1.5;
+}
+.bubble code{font-family:inherit;font-weight:700}
+.bubble .cta{display:inline-block;margin-top:6px;font-weight:600;font-size:16px}
+.chat-input{display:flex;align-items:center;gap:12px;padding:14px 24px;border-top:1px solid var(--line-2)}
+.plus{width:34px;height:34px;border-radius:50%;background:#f0f2f6;color:#8b909b;display:grid;place-items:center;font-size:20px}
+.chat-input .fld{flex:1;border:1px solid var(--line);border-radius:22px;padding:10px 18px;color:var(--muted-2)}
+.send{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;flex:none}
+
+/* ---------- screen 2: dashboard ---------- */
+.lk{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:26px;padding:22px 24px 40px}
+.side{font-size:15px;padding-top:6px}
+.side ul{list-style:none;margin:0;padding:0}
+.side li{padding:7px 12px;border-radius:8px;color:var(--ink-2);cursor:default}
+.side li.sub{padding-left:26px;font-size:14px;color:#4a4f59}
+.side li.grp{font-weight:600;margin-top:10px}
+.side li.on{background:#e9edf4;font-weight:600}
+.side .cnt{color:var(--muted-2);font-weight:400}
+.side hr{border:0;border-top:1px solid var(--line);margin:12px 12px}
+.lk-main{display:grid;grid-template-columns:1fr;gap:18px}
+.cols{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
+.card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.card h2{font-size:22px;margin:0;font-weight:600;letter-spacing:-.01em}
+.seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{background:#fff;border:0;padding:8px 14px;font-size:14px;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--blue-soft);color:var(--blue);font-weight:500}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+.chip{border:1px solid var(--line);border-radius:9px;padding:8px 13px;font-size:14px;background:#fff;color:var(--ink-2)}
+.chip b{font-weight:600;margin-left:6px}
+.chip.on{background:var(--blue-soft);border-color:#cfe0ff}
+.stat-row{display:grid;grid-template-columns:250px 1fr;gap:26px;margin-top:14px}
+.stat-l h3{font-size:18px;margin:0 0 6px;font-weight:600}
+.stat-l p{color:var(--muted);font-size:14px;margin:0 0 6px}
+.total{display:flex;align-items:baseline;gap:8px;margin-top:34px;font-size:15px}
+.total .dots{flex:1;border-bottom:1px dashed #cfd4dd;transform:translateY(-4px)}
+.total b{font-size:17px}
+.chart{position:relative;height:210px;display:grid;grid-template-columns:36px 1fr}
+.yax{display:flex;flex-direction:column-reverse;justify-content:space-between;font-size:12px;color:var(--muted-2);padding-bottom:22px}
+.plot{position:relative;border-left:0}
+.grid{position:absolute;inset:0 0 22px 0;display:flex;flex-direction:column-reverse;justify-content:space-between}
+.grid span{border-top:1px dashed #e2e6ee;display:block;height:0}
+.bars{position:absolute;inset:0 0 22px 0;display:flex;align-items:stretch;gap:14px;padding:0 4px}
+.bar{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+.bar .b1{background:#8ba4f0;border-radius:2px 2px 0 0}
+.bar .b2{background:#f6c37a;border-radius:2px 2px 0 0}
+.xax{position:absolute;left:0;right:0;bottom:0;display:flex;gap:14px;padding:0 4px;font-size:12px;color:var(--muted)}
+.xax span{flex:1;text-align:center}
+.legend{display:flex;gap:22px;justify-content:center;margin-top:12px;font-size:13px;color:var(--ink-2)}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-1px}
+.promo-banner{position:relative;overflow:hidden}
+.promo-banner h3{font-size:27px;line-height:1.15;margin:0 0 10px;font-weight:600;letter-spacing:-.02em;max-width:60%}
+.promo-banner p{color:var(--muted);margin:0 0 18px;max-width:56%}
+.promo-banner .emoji{position:absolute;right:26px;bottom:20px;font-size:76px;line-height:1}
+.bullets{margin:0 0 18px;padding-left:18px;color:var(--ink-2);max-width:58%}
+.bullets li{margin-bottom:8px}
+.tbl{width:100%;border-collapse:collapse;margin-top:12px;font-size:15px}
+.tbl th{font-size:14px;color:var(--muted);font-weight:500;text-align:right;padding:8px 0}
+.tbl th:first-child{text-align:left;color:var(--ink);font-weight:600;font-size:15px}
+.tbl td{padding:11px 0;border-top:1px solid var(--line-2);text-align:right}
+.tbl td:first-child{text-align:left}
+.tbl td b{color:var(--blue);font-weight:500}
+.tbl td.no{color:var(--muted)}
+/* balance card */
+.bal{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.bal .lbl{color:var(--ink-2);font-size:15px;display:flex;align-items:center;gap:6px}
+.bal .val{font-size:31px;font-weight:600;letter-spacing:-.02em;margin:2px 0 14px;font-variant-numeric:tabular-nums}
+.bal small{display:block;color:var(--muted);font-size:13px;line-height:1.6}
+.info-i{width:17px;height:17px;border-radius:50%;background:#e4ecf9;color:var(--blue);font-size:11px;display:inline-grid;place-items:center;font-style:normal}
+.promo-field{
+  display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;
+  padding:11px 14px;background:#fff;flex:1;min-width:0;
+}
+.promo-field .code{font-weight:500;flex:1;letter-spacing:.01em;white-space:nowrap}
+.promo-field .clear{
+  border:0;background:transparent;color:#a8adb8;padding:2px;line-height:0;border-radius:5px;flex:none;
+  display:grid;place-items:center;transition:color .15s,background .15s;
+}
+.promo-field .clear:hover{color:#6b7280;background:#f0f2f6}
+.promo-field.empty .check,.promo-field.empty .clear{display:none}
+.promo-field.empty .code{color:var(--muted-2);font-weight:400}
+.check{width:19px;height:19px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
+.promo-row{display:flex;gap:12px;align-items:center;margin-top:22px;padding-top:20px;border-top:1px solid var(--line-2)}
+.promo-note{color:var(--muted);font-size:14px;margin-top:8px}
+.promo-link{display:inline-block;font-size:15px}
+.promo-link-wrap{display:inline-block;margin-top:14px}
+.level-head{display:flex;align-items:center;gap:12px}
+.level-head h3{font-size:23px;margin:0;font-weight:600}
+.badge-blue{margin-left:auto;background:#e7effc;color:var(--blue);border-radius:8px;padding:6px 12px;font-size:14px}
+.shield{width:30px;height:30px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:600}
+.gauge{display:flex;align-items:flex-end;justify-content:flex-end}
+
+/* ---------- modal ---------- */
+.overlay{position:fixed;inset:0;background:rgba(24,30,40,.45);display:none;place-items:center;z-index:60;padding:24px}
+.overlay.is-open{display:grid}
+.modal{background:#fff;border-radius:16px;padding:34px 40px 26px;width:min(560px,100%);position:relative;box-shadow:0 20px 50px rgba(10,20,40,.25)}
+.modal h3{font-size:27px;margin:0 0 24px;font-weight:600;letter-spacing:-.02em}
+.modal .x{position:absolute;top:16px;right:18px;border:0;background:#fff;color:#8b909b;font-size:20px;width:32px;height:32px;border-radius:50%;line-height:1}
+.modal .x:hover{background:#f2f4f8}
+.pc{margin-bottom:20px}
+.pc b{display:block;font-weight:600}
+.pc span{display:block;color:var(--ink-2);font-size:15px}
+.pc small{display:block;color:var(--muted-2);font-size:14px;margin-top:2px}
+.modal .btn{float:right;margin-top:6px}
+
+/* ---------- screen 4: checkout ---------- */
+.co{max-width:1180px;margin:0 auto;padding:26px 24px 60px;display:grid;grid-template-columns:290px 1fr;gap:34px;align-items:start}
+.co-aside .step{color:var(--muted);font-size:14px}
+.co-aside .step b{display:block;color:var(--ink);font-size:18px;font-weight:600;margin-top:2px}
+.progress{height:5px;border-radius:4px;margin:12px 0 34px;background:linear-gradient(90deg,#f0d8ff,#8ab6ff 40%,#0468ff)}
+.co-aside h4{font-size:17px;margin:26px 0 8px;font-weight:600}
+.co-aside p{color:var(--muted);margin:0 0 18px;font-size:15px}
+.co-main{display:grid;gap:18px}
+.co-card{background:#fff;border-radius:16px;padding:26px 30px;box-shadow:var(--shadow)}
+.co-card h2{font-size:24px;margin:0 0 18px;font-weight:600}
+.opt{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px;cursor:pointer;transition:border-color .15s,box-shadow .15s;background:#fff;display:grid;grid-template-columns:1fr auto;gap:18px;text-align:left;width:100%}
+.opt:hover{border-color:#b9d0f8}
+.opt.on{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.opt h3{font-size:17px;margin:0;font-weight:600;display:flex;align-items:center;gap:7px}
+.opt .price{color:var(--ink-2);margin-top:4px;font-size:15px}
+.save{display:inline-block;background:var(--green-soft);color:#177a41;border-radius:7px;padding:4px 10px;font-size:13px;margin-bottom:10px}
+.feats{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:9px;font-size:15px;color:var(--ink-2)}
+.feats li{display:flex;gap:9px}
+.feats svg{flex:none;margin-top:3px}
+.stepper-l{font-size:13px;color:var(--muted);text-align:center;margin-bottom:6px}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;width:170px}
+.stepper button{background:#fff;border:0;padding:9px 14px;color:var(--blue);font-size:17px}
+.stepper span{flex:1;text-align:center;font-weight:500;font-variant-numeric:tabular-nums}
+.pts{text-align:center;font-size:13px;color:var(--muted);margin-top:12px}
+.pts b{display:block;color:var(--ink);font-size:17px;font-weight:600;margin-top:2px}
+.co-card .right{display:flex;justify-content:flex-end;margin-top:6px}
+.pr-head{display:flex;align-items:flex-start;gap:18px}
+.pr-head p{color:var(--muted);margin:6px 0 0;font-size:15px;max-width:640px}
+.switch{margin-left:auto;width:52px;height:30px;border-radius:16px;background:var(--blue);position:relative;flex:none;border:0}
+.switch::after{content:"";position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;background:#fff}
+.pr-tbl{margin-top:22px}
+.pr-h{display:grid;grid-template-columns:1fr 150px 110px 190px;font-size:14px;color:var(--muted);padding:0 18px 8px;text-align:center}
+.pr-h span:first-child{text-align:left}
+.pr-row{display:grid;grid-template-columns:1fr 150px 110px 190px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;text-align:center}
+.pr-row>span:first-child{text-align:left}
+.pr-row.on{border-color:var(--blue);background:var(--violet);box-shadow:inset 0 0 0 1px var(--blue)}
+.pr-row.plain{border:0;padding:10px 18px}
+.pr-name b{display:block;font-weight:600}
+.pr-name small{color:var(--muted);font-size:13px}
+.radio{width:19px;height:19px;border-radius:50%;border:2px solid var(--blue);display:inline-grid;place-items:center;vertical-align:-4px;margin-left:8px}
+.radio i{width:9px;height:9px;border-radius:50%;background:var(--blue);display:block}
+.bid{display:flex;align-items:center;justify-content:space-between;border:1px solid #c9d9f6;border-radius:10px;background:#fff;padding:7px 12px}
+.bid b{font-weight:600}
+.place{color:var(--orange);font-size:12px;text-align:right;margin-top:5px}
+.term{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.term button{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 18px;text-align:center;min-width:118px}
+.term button.on{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.term small{display:block;color:var(--orange);font-size:12px;margin-top:2px}
+.sum{display:grid;gap:2px;max-width:600px;margin-left:auto}
+.line{display:flex;align-items:baseline;gap:8px;padding:7px 0;font-size:15px}
+.line .dots{flex:1;border-bottom:1px dashed #d5d9e1;transform:translateY(-4px)}
+.line.head{font-weight:600}
+.line.disc{color:var(--ink-2)}
+.line.disc .rub{color:var(--red)}
+.line.total{font-weight:600;font-size:17px;margin-top:10px}
+.line .rub{font-variant-numeric:tabular-nums;white-space:nowrap}
+.chkline{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:15px;padding:2px 0 10px}
+.chkbox{width:19px;height:19px;border-radius:5px;background:var(--blue);display:grid;place-items:center;flex:none}
+.pay-row{display:flex;align-items:center;gap:26px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line-2)}
+.pay-row .btn{padding:14px 30px;font-size:16px;border-radius:11px}
+.pay-row .right{margin-left:auto;display:flex;align-items:center;gap:22px}
+.oferta{text-align:right;color:var(--muted);font-size:13px;margin-top:10px}
+.hr{height:1px;background:var(--line-2);margin:16px 0}
+
+/* ---------- hotspot + proto bar ---------- */
+.hot{position:relative}
+.protobar{
+  position:fixed;left:0;right:0;bottom:0;z-index:80;background:#12161f;color:#e8ebf2;
+  display:flex;align-items:center;gap:18px;padding:11px 20px;font-size:14px;
+  box-shadow:0 -4px 20px rgba(10,15,25,.2);flex-wrap:wrap;
+}
+.protobar .name{font-weight:600;letter-spacing:.01em}
+.protobar .steps{display:flex;gap:8px;flex-wrap:wrap}
+.protobar .steps button{
+  background:transparent;border:1px solid #333c4d;color:#aeb6c4;border-radius:8px;padding:6px 12px;
+}
+.protobar .steps button.on{background:#fff;color:#12161f;border-color:#fff;font-weight:600}
+.protobar .sp{margin-left:auto;display:flex;align-items:center;gap:14px}
+.protobar .lnk{background:transparent;border:1px solid #333c4d;color:#aeb6c4;border-radius:8px;padding:6px 12px}
+.protobar .lnk.on{color:#8fc0ff;border-color:#31527f}
+.toast{
+  position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#12161f;color:#fff;
+  padding:12px 20px;border-radius:11px;z-index:90;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+@media (max-width:1180px){
+  .cols{grid-template-columns:1fr}
+  .lk{grid-template-columns:1fr}
+  .side{display:none}
+  .chat-wrap{grid-template-columns:1fr}
+  .dlg-col{display:none}
+  .co{grid-template-columns:1fr}
+  .pr-h,.pr-row{grid-template-columns:1fr 90px 80px 150px;font-size:14px}
+  .nav{display:none}
+}
+</style>
+</head>
+<body>
+<!-- ============ SCREEN 1 — сообщение с промокодом ============ -->
+<section class="screen is-active" id="s1">
+  <header class="hdr">
+    <div class="hdr-in">
+      <div class="logo"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</div>
+      <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Коммерческая</span><span>Оценка</span><span>Ипотека</span><span style="color:var(--muted)">Glorax Development</span></nav>
+      <div class="hdr-right">
+        <div class="icons">
+          <i title="Сообщения"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg></i>
+          <i title="Избранное"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
+          <i title="Поиски"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
+          <i title="Уведомления"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M6 16V10a6 6 0 1 1 12 0v6l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="dot"></span></i>
+        </div>
+        <button class="btn">Разместить объявление</button>
+        <div class="ava">АМ</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="chat-wrap">
+    <aside class="dlg-col">
+      <div class="dlg-head">Все сообщения
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="dlg">
+        <div class="dlg-ava">
+          <svg width="24" height="26" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 3c4 0 7 3.2 7 7.2 0 5-7 10.8-7 10.8S6 15.2 6 10.2C6 6.2 9 3 13 3z" fill="#fff"/><circle cx="13" cy="10" r="2.6" fill="#0468ff"/><path d="M4 25h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="star">★</span>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div class="dlg-name">Циан <time>12:34</time></div>
+          <div class="dlg-txt">Новая заявка поступила в работу</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="chat-col">
+      <div class="chat-top">
+        <div class="chat-title">Александр Гребенкин</div>
+        <div class="chat-sub">был в сети час назад</div>
+      </div>
+      <div class="offer">
+        <div class="ph"></div>
+        <div class="offer-main">
+          <div class="offer-t">2-к. кв. · 10 000 ₽/сутки · 40 м²</div>
+          <div class="offer-m"><span>Ⓜ Жулебино</span><span>🚌 19 мин.</span></div>
+        </div>
+        <a href="#" onclick="return false">Посмотреть</a>
+      </div>
+
+      <div class="chat-body">
+        <div class="daychip">Сегодня</div>
+        <div class="bubble">
+          <code>SPO2OUPGT9A</code> — промокод на скидку 20% при оплате размещения.
+          Активируйте промокод и скидка применится автоматически.
+          Торопитесь, предложение действительно до 01.10.2026
+          <span class="hot" style="display:inline-block;margin-top:16px"><a class="cta" href="#" data-go="s2" data-toast="Промокод SPO2OUPGT9A применён">Активировать промокод</a></span>
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <span class="plus">+</span>
+        <div class="fld">Написать сообщение</div>
+        <span class="send">↑</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREEN 2 — личный кабинет ============ -->
+<section class="screen" id="s2">
+  <header class="hdr">
+    <div class="hdr-in">
+      <div class="logo"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>Циан</div>
+      <nav class="nav"><span>Для профи ↗</span><span>Что нового?</span></nav>
+      <div class="hdr-right">
+        <div class="icons">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg><span class="dot"></span></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
+        </div>
+        <span class="hot"><button class="btn" data-go="s4">+ Разместить объявление</button></span>
+        <div class="ava">АМ</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="lk">
+    <aside class="side">
+      <ul>
+        <li>Сводка</li>
+        <li class="on">Мои объявления <span class="cnt">179</span></li>
+        <li>Профпоиск</li>
+        <li>Мои сделки</li>
+        <li>Мои ипотечные заявки</li>
+        <li>Зарабатывайте с Циан</li>
+        <li>Заявки <span class="cnt">250</span></li>
+        <li class="grp">Пакеты размещений</li>
+        <li class="sub">Купить пакет</li>
+        <li class="sub">Перс. предложения <span style="color:var(--blue)">+7</span></li>
+        <li class="sub">Мои пакеты</li>
+        <li class="sub">Собрать свой пакет</li>
+        <li class="grp">Кошелёк</li>
+        <li class="sub">Пополнение счёта</li>
+        <li class="sub">Автоплатёж</li>
+        <li class="sub">Операции</li>
+        <li class="sub">Привязанные карты</li>
+        <li class="grp">Уведомления <span class="cnt">46</span></li>
+        <li class="grp">Сообщения <span class="cnt">5</span></li>
+        <li class="grp">Отчёты</li>
+        <li class="sub">Журнал объявлений</li>
+        <li class="sub">Выгрузки</li>
+        <li class="sub">Отчёт по звонкам</li>
+        <li class="sub">Отчёт о размещении</li>
+        <li class="grp">Жалобы</li>
+        <li class="grp">Скрытые объявления</li>
+        <li class="grp">Тарифный план</li>
+        <li class="grp">Качество сервиса</li>
+        <li class="grp">Профиль</li>
+        <li class="sub">Подтверждение аккаунта</li>
+        <li class="sub">Мои подписки</li>
+      </ul>
+      <hr>
+      <ul><li>Настройки</li><li>Поддержка</li><li>Выйти</li></ul>
+    </aside>
+
+    <div class="lk-main">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <h2>Статистика по всем объявлениям</h2>
+          <div style="margin-left:auto;display:flex;gap:12px;flex-wrap:wrap">
+            <div class="seg"><button class="on">За 7 дней</button><button>За 30 дней</button><button>С начала года</button></div>
+            <div class="seg"><button>📅 Выбрать период</button></div>
+          </div>
+        </div>
+        <div class="chips">
+          <span class="chip">Объявления</span>
+          <span class="chip">Показы <b>5 451 950</b></span>
+          <span class="chip on">Просмотры <b>1 958</b></span>
+          <span class="chip">Отклики <b>58</b></span>
+          <span class="chip">Звонки <b>157</b></span>
+          <span class="chip">В избранном <b>27</b></span>
+        </div>
+        <div class="stat-row">
+          <div class="stat-l">
+            <h3>Просмотры</h3>
+            <p>Сколько раз пользователи открыли и посмотрели ваши объявления.</p>
+            <a href="#" onclick="return false">Подробнее</a>
+            <div class="total"><span>Всего за 7 дней</span><span class="dots"></span><b>1 958</b></div>
+          </div>
+          <div>
+            <div class="chart">
+              <div class="yax"><span>0</span><span>100</span><span>200</span><span>300</span><span>400</span></div>
+              <div class="plot">
+                <div class="grid"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="bars">
+                  <div class="bar"><div class="b1" style="height:38%"></div></div>
+                  <div class="bar"><div class="b1" style="height:54%"></div></div>
+                  <div class="bar"><div class="b1" style="height:37%"></div></div>
+                  <div class="bar"><div class="b2" style="height:74%"></div><div class="b1" style="height:20%"></div></div>
+                  <div class="bar"><div class="b2" style="height:33%"></div><div class="b1" style="height:34%"></div></div>
+                  <div class="bar"><div class="b2" style="height:20%"></div><div class="b1" style="height:47%"></div></div>
+                  <div class="bar"><div class="b1" style="height:38%"></div></div>
+                </div>
+                <div class="xax"><span>25.03</span><span>26.03</span><span>27.03</span><span>28.03</span><span>29.03</span><span>30.03</span><span>31.03</span></div>
+              </div>
+            </div>
+            <div class="legend">
+              <span><i style="background:#8ba4f0"></i>Базовые просмотры</span>
+              <span><i style="background:#f6c37a"></i>Просмотры от услуг продвижения</span>
+              <span><i style="background:#9aa0ac;border-radius:50%"></i>Работало продвижение</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cols">
+        <div style="display:grid;gap:18px">
+          <div class="card promo-banner">
+            <h3>Подключите скидку<br>на ипотеку</h3>
+            <p>Предложите покупателю пониженную ставку и продайте квартиру на вторичке быстрее</p>
+            <button class="btn">Узнать подробнее</button>
+            <div class="emoji">🪙</div>
+          </div>
+          <div class="card promo-banner">
+            <h3>Зарабатывайте до 6 000 ₽<br>за первую Циан.Сделку</h3>
+            <ul class="bullets">
+              <li>до 3 000 ₽ — бонусное вознаграждение за присоединение к программе до 31 мая 2026.</li>
+              <li>до 3 000 ₽ — за проведение Циан.Сделки</li>
+            </ul>
+            <div style="display:flex;align-items:center;gap:20px">
+              <button class="btn">Присоединиться к программе</button>
+              <a href="#" onclick="return false">Подробнее</a>
+            </div>
+            <div class="emoji">💵</div>
+          </div>
+          <div class="card">
+            <h2>Мои объявления</h2>
+            <table class="tbl">
+              <tr><th>Аренда</th><th>Активные</th><th>Неактивные</th></tr>
+              <tr><td>Квартиры и комнаты</td><td><b>6</b></td><td><b>39</b></td></tr>
+              <tr><td>Загородная недвижимость</td><td class="no">нет</td><td><b>2</b></td></tr>
+              <tr><td>Коммерческая недвижимость</td><td><b>74</b></td><td><b>168</b></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div style="display:grid;gap:18px">
+          <div class="card">
+            <div class="bal">
+              <div>
+                <div class="lbl">Баланс</div>
+                <div class="val">44 873 ₽</div>
+                <button class="btn">Пополнить</button>
+              </div>
+              <div>
+                <div class="lbl">Баллы на продвижение <i class="info-i">i</i></div>
+                <div class="val">64 904 Б</div>
+                <small>1 418 Б до 9 ноября</small>
+                <small>63 486 Б до 28 ноября</small>
+              </div>
+            </div>
+            <div style="margin-top:16px"><a href="#" onclick="return false">История операций</a></div>
+
+            <div class="promo-row">
+              <div class="promo-field" id="promoField">
+                <span class="check"><svg width="11" height="9" viewBox="0 0 12 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg></span>
+                <span class="code" id="promoCode">SPO2OUPGT9A</span>
+                <button class="clear" data-promo="clear" aria-label="Удалить промокод">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9"/></svg>
+                </button>
+              </div>
+              <button class="btn" id="promoApply" disabled data-promo="apply">Применить</button>
+            </div>
+            <div class="promo-note" id="promoNote">−20% на публикацию до 01.11.2026</div>
+            <span class="hot promo-link-wrap"><a class="promo-link" href="#" data-modal="open">У вас 3 применённых промокода</a></span>
+          </div>
+
+          <div class="card">
+            <div class="level-head">
+              <span class="shield">1</span>
+              <h3>Стартовый</h3>
+              <span class="badge-blue">Бонусы</span>
+            </div>
+            <p style="color:var(--muted);margin:14px 0 10px">Публикуйте качественные объявления и выполняйте задания, чтобы перейти на следующие уровни и получить бонусы.</p>
+            <a href="#" onclick="return false">О программе «Работаю честно»</a>
+            <p style="font-weight:600;color:var(--ink);margin:18px 0 8px">Как перейти на 2 уровень</p>
+            <div style="display:flex;gap:9px;align-items:center;color:var(--ink-2)">
+              <svg width="16" height="16" viewBox="0 0 12 10" fill="none" stroke="#0468ff" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>
+              Пройдите <a href="#" onclick="return false">идентификацию</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 style="font-size:23px">Благодарим за сотрудничество</h2>
+            <div style="display:grid;grid-template-columns:1fr 150px;gap:16px;align-items:center;margin-top:10px">
+              <p style="color:var(--muted);margin:0">Благодарим за сотрудничество и достоверную информацию в опубликованных объявлениях.</p>
+              <div class="gauge">
+                <svg width="150" height="88" viewBox="0 0 150 88" aria-label="Шкала нарушений">
+                  <path d="M14 78a61 61 0 0 1 24-49" stroke="#2fb35f" stroke-width="13" fill="none" stroke-linecap="round"/>
+                  <path d="M46 24a61 61 0 0 1 26-6" stroke="#8ecb3f" stroke-width="13" fill="none" stroke-linecap="round"/>
+                  <path d="M80 18a61 61 0 0 1 25 8" stroke="#f2c53d" stroke-width="13" fill="none" stroke-linecap="round"/>
+                  <path d="M112 31a61 61 0 0 1 24 47" stroke="#e5352d" stroke-width="13" fill="none" stroke-linecap="round"/>
+                  <path d="M75 78L44 40" stroke="#3a3f4a" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="75" cy="78" r="5" fill="#3a3f4a"/>
+                  <text x="75" y="86" text-anchor="middle" font-size="12" fill="#7a7f8a" font-family="inherit">Нарушения</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- модалка (экран 3) -->
+  <div class="overlay" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <div class="modal">
+      <button class="x" data-modal="close" aria-label="Закрыть">×</button>
+      <h3 id="pmTitle">Применённые промокоды</h3>
+      <div class="pc"><b>−20% на публикацию</b><span>SPO2OUPGT9A</span><small>Действует до 01.11.2026</small></div>
+      <div class="pc"><b>−5% на продвижение</b><span>DFWRFRW45</span><small>Действует до 01.10.2026</small></div>
+      <div class="pc"><b>500 баллов на продвижение</b><span>DF500</span><small>Действует до 01.10.2026</small></div>
+      <div style="display:flow-root"><span class="hot" style="float:right"><button class="btn" data-modal="close">Понятно</button></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREEN 4 — оплата и публикация ============ -->
+<section class="screen" id="s4">
+  <header class="hdr">
+    <div class="hdr-in">
+      <div class="logo"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</div>
+      <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Коммерческая</span><span>Оценка</span><span>Ипотека</span><span style="color:var(--muted)">Glorax Development</span></nav>
+      <div class="hdr-right">
+        <div class="icons">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M6 16V10a6 6 0 1 1 12 0v6l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></i>
+        </div>
+        <button class="btn">+ Разместить объявление</button>
+        <div class="ava">АМ</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="co">
+    <aside class="co-aside">
+      <div class="step">Финальный шаг<b>Оплата и публикация 🎉</b></div>
+      <div class="progress"></div>
+      <div style="font-size:64px;line-height:1">👌</div>
+      <h4>Объявление почти готово!</h4>
+      <p>Используйте продвижение, чтобы получить больше просмотров и быстрее найти покупателя</p>
+      <a href="#" onclick="return false">💬 Нужна помощь?</a>
+    </aside>
+
+    <div class="co-main">
+      <div class="co-card">
+        <h2>Публикация</h2>
+
+        <button class="opt on" data-plan="single">
+          <div>
+            <h3>Одно размещение</h3>
+            <div class="price">136 ₽ за объявление</div>
+          </div>
+        </button>
+
+        <span class="hot" style="display:block"><button class="opt" data-plan="pack-points">
+          <div>
+            <span class="save">Экономия 3 146 ₽</span>
+            <h3>Пакет с публикациями и баллами на продвижение <i class="info-i">i</i></h3>
+            <div class="price">127 ₽ за объявление</div>
+            <ul class="feats">
+              <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Скидка 10–20%: больше объявлений — больше скидка</li>
+              <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Скидка на следующие пакеты при покупке без перерыва: растёт с 4% до 15%</li>
+              <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Кешбэк баллами на продвижение 30%</li>
+            </ul>
+          </div>
+          <div>
+            <div class="stepper-l">Количество объявлений</div>
+            <div class="stepper"><span style="padding:9px 14px;color:var(--blue)">−</span><span>3</span><span style="padding:9px 14px;color:var(--blue)">+</span></div>
+            <div class="pts">Баллы на продвижение<b>3 473</b></div>
+          </div>
+        </button></span>
+
+        <span class="hot" style="display:block"><button class="opt" data-plan="pack">
+          <div>
+            <span class="save">Экономия 3 146 ₽</span>
+            <h3>Пакет с публикациями <i class="info-i">i</i></h3>
+            <div class="price">127 ₽ за объявление</div>
+          </div>
+          <div>
+            <div class="stepper-l">Количество объявлений</div>
+            <div class="stepper"><span style="padding:9px 14px;color:var(--blue)">−</span><span>3</span><span style="padding:9px 14px;color:var(--blue)">+</span></div>
+          </div>
+        </button></span>
+
+        <div class="right"><button class="btn">К оплате пакета</button></div>
+      </div>
+
+      <div class="co-card">
+        <div class="pr-head">
+          <div>
+            <h2 style="margin:0">Продвижение в поиске, рекомендациях и на карте</h2>
+            <p>Чем сильнее продвижение, тем больше потенциальных клиентов увидит ваше объявление. Топ со ставкой дополнительно гарантирует фиксированную позицию в поиске.</p>
+          </div>
+          <span class="switch" aria-hidden="true"></span>
+        </div>
+
+        <div class="pr-tbl">
+          <div class="pr-h"><span></span><span>Прирост показов ⓘ</span><span>Конкуренты ⓘ</span><span></span></div>
+          <div class="pr-row on">
+            <span class="pr-name"><b>Топ + Ставка <span class="radio"><i></i></span></b><small>100 ₽ + 120 ₽</small></span>
+            <span>+ 200-400</span>
+            <span>1</span>
+            <span>
+              <span class="bid"><span style="color:var(--blue)">−</span><b>220</b> ₽/день<span style="color:var(--blue)">+</span></span>
+              <span class="place">6 место, 1 страница</span>
+            </span>
+          </div>
+          <div class="pr-row"><span class="pr-name"><b>Премиум</b></span><span>+ 100-200</span><span>13</span><span><b>80</b> ₽/день</span></div>
+          <div class="pr-row"><span class="pr-name"><b>Стандарт</b></span><span>+ 40-100</span><span>34</span><span><b>40</b> ₽/день</span></div>
+          <div class="pr-row plain"><span class="pr-name"><b>Без продвижения</b></span><span>0-40</span><span>158</span><span></span></div>
+        </div>
+
+        <p style="font-weight:600;margin:22px 0 0">Срок продвижения</p>
+        <div class="term">
+          <button>Посуточно</button>
+          <button>7 дней<small>Скидка 10%</small></button>
+          <button class="on">14 дней<small>Скидка 15%</small></button>
+          <button>30 дней<small>Скидка 20%</small></button>
+        </div>
+      </div>
+
+      <div class="co-card">
+        <div class="sum">
+          <div class="line head" data-amount="3000"><span>Публикация на 30 дней</span><span class="dots"></span><span class="rub">3 000 ₽</span></div>
+          <div class="line disc" id="promoLine" data-base="3000" data-percent="20"><span>Скидка 20% по промокоду SPO2OUPGT9A</span><span class="dots"></span><span class="rub"></span></div>
+          <div class="chkline"><span class="chkbox"><svg width="11" height="9" viewBox="0 0 12 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg></span>Автопродление публикации</div>
+          <div class="line head" data-amount="1400"><span>Продвижение Топ на 14 дней</span><span class="dots"></span><span class="rub">1 400 ₽</span></div>
+          <div class="line disc" data-base="1400" data-percent="15"><span>Скидка 15% по промокоду DF500</span><span class="dots"></span><span class="rub"></span></div>
+          <div class="line total"><span>Итого</span><span class="dots"></span><span class="rub" id="totalSum">1 190 ₽</span></div>
+        </div>
+        <div class="pay-row">
+          <a href="#" onclick="return false">Сохранить и выйти</a>
+          <div class="right">
+            <a href="#" data-go="s2">Назад</a>
+            <button class="btn" data-toast="Оплата прошла. Объявление опубликовано 🎉">Оплатить и разместить</button>
+          </div>
+        </div>
+        <div class="oferta">Оплачивая услуги, вы соглашаетесь с <a href="#" onclick="return false">офертой</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<!-- ============ панель прототипа ============ -->
+<div class="protobar">
+  <span class="name">Прототип · Промокод в Циан</span>
+  <div class="steps">
+    <button data-step="s1">1 · Сообщение</button>
+    <button data-step="s2">2 · Кабинет</button>
+    <button data-step="s3">3 · Промокоды</button>
+    <button data-step="s4">4 · Оплата</button>
+  </div>
+  <div class="sp">
+    <button class="lnk" id="restartBtn">Начать заново</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var doodle = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23cde0f9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='18' y='22' width='42' height='30' rx='6'/%3E%3Cpath d='M18 44h42'/%3E%3Ccircle cx='110' cy='36' r='14'/%3E%3Cpath d='M110 26v10l7 5'/%3E%3Cpath d='M168 50V26l24 8v24z'/%3E%3Cpath d='M214 24h26v28h-26zM214 34h26'/%3E%3Cpath d='M26 108c0-10 8-16 18-16s18 6 18 16v14H26z'/%3E%3Cpath d='M96 96h34l-6 30H102z'/%3E%3Cpath d='M104 96c0-8 4-12 9-12s9 4 9 12'/%3E%3Cpath d='M164 122V94l16-10 16 10v28z'/%3E%3Cpath d='M176 122v-14h8v14'/%3E%3Ccircle cx='232' cy='108' r='16'/%3E%3Cpath d='M232 92v16h12'/%3E%3Cpath d='M22 178h44l-6 24H28z'/%3E%3Cpath d='M88 200c0-14 10-24 22-24s22 10 22 24z'/%3E%3Cpath d='M162 176h36v26h-36zM162 186h36'/%3E%3Cpath d='M222 176l16 10-16 10z'/%3E%3Cpath d='M30 236h40M96 236h44M170 236h30M222 232l10 10'/%3E%3C/g%3E%3C/svg%3E\")";
+  document.documentElement.style.setProperty('--doodles', doodle);
+
+  var screens = { s1:document.getElementById('s1'), s2:document.getElementById('s2'), s4:document.getElementById('s4') };
+  var modal = document.getElementById('promoModal');
+  var toastEl = document.getElementById('toast');
+  var tTimer;
+
+  function toast(msg){
+    if(!msg) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(tTimer);
+    tTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+  }
+
+  function show(id){
+    Object.keys(screens).forEach(function(k){ screens[k].classList.toggle('is-active', k===id); });
+    window.scrollTo({top:0, behavior:'auto'});
+    markSteps();
+  }
+  function openModal(open){
+    modal.classList.toggle('is-open', open);
+    markSteps();
+  }
+  function markSteps(){
+    var cur = modal.classList.contains('is-open') ? 's3'
+      : (screens.s1.classList.contains('is-active') ? 's1'
+      : screens.s2.classList.contains('is-active') ? 's2' : 's4');
+    document.querySelectorAll('.protobar .steps button').forEach(function(b){
+      b.classList.toggle('on', b.dataset.step===cur);
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    var go = e.target.closest('[data-go]');
+    var md = e.target.closest('[data-modal]');
+    var plan = e.target.closest('[data-plan]');
+    var stepBtn = e.target.closest('.protobar .steps button');
+
+    if(go){
+      e.preventDefault();
+      openModal(false);
+      show(go.dataset.go);
+      toast(go.dataset.toast);
+      return;
+    }
+    if(md){
+      e.preventDefault();
+      openModal(md.dataset.modal==='open');
+      return;
+    }
+    if(e.target === modal){ openModal(false); return; }
+    if(plan){
+      document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b===plan); });
+      currentPlan = plan.dataset.plan;
+      updateCheckout();
+      return;
+    }
+    var promoBtn = e.target.closest('[data-promo]');
+    if(promoBtn){
+      e.preventDefault();
+      setPromo(promoBtn.dataset.promo === 'apply');
+      return;
+    }
+    if(stepBtn){
+      var s = stepBtn.dataset.step;
+      if(s==='s3'){ show('s2'); openModal(true); }
+      else { openModal(false); show(s); }
+      return;
+    }
+    var t = e.target.closest('[data-toast]');
+    if(t){ toast(t.dataset.toast); }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && modal.classList.contains('is-open')) openModal(false);
+  });
+
+  function money(n){
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0₽';
+  }
+  var currentPlan = 'single';
+  var promoOn = true;
+
+  function updateCheckout(){
+    var show = currentPlan === 'single' && promoOn;
+    document.getElementById('promoLine').style.display = show ? '' : 'none';
+    recalc();
+  }
+  function setPromo(on){
+    promoOn = on;
+    document.getElementById('promoField').classList.toggle('empty', !on);
+    document.getElementById('promoCode').textContent = on ? 'SPO2OUPGT9A' : 'Введите промокод';
+    document.getElementById('promoApply').disabled = on;
+    document.getElementById('promoNote').style.display = on ? '' : 'none';
+    updateCheckout();
+  }
+
+  function recalc(){
+    var sum = 0;
+    document.querySelectorAll('.sum .line[data-amount],.sum .line[data-percent]').forEach(function(l){
+      var amount;
+      if(l.dataset.percent){
+        amount = -Math.round(parseFloat(l.dataset.base) * parseFloat(l.dataset.percent) / 100);
+        l.querySelector('.rub').textContent = '\u2212' + money(-amount);
+      } else {
+        amount = parseFloat(l.dataset.amount);
+      }
+      if(l.style.display !== 'none') sum += amount;
+    });
+    document.getElementById('totalSum').textContent = money(sum);
+  }
+  recalc();
+
+  document.getElementById('restartBtn').addEventListener('click', function(){
+    openModal(false);
+    document.querySelector('[data-plan="single"]').click();
+    setPromo(true);
+    show('s1');
+  });
+
+  markSteps();
+})();
+</script>
+</body>
+</html>
