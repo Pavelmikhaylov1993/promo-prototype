@@ -36,7 +36,6 @@ body{
   font-size:15px;
   line-height:1.4;
   -webkit-font-smoothing:antialiased;
-  padding-bottom:76px;
 }
 button{font:inherit;color:inherit;cursor:pointer}
 a{color:var(--blue);text-decoration:none;cursor:pointer}
@@ -48,14 +47,8 @@ a:hover{text-decoration:underline}
 .screen.is-active{display:block}
 
 /* ---------- header ---------- */
-.hdr{
-  background:#fff;border-bottom:1px solid var(--line-2);
-  position:sticky;top:0;z-index:30;
-}
-.hdr-in{
-  max-width:var(--maxw);margin:0 auto;padding:0 24px;min-height:64px;
-  display:flex;align-items:center;gap:26px;
-}
+.hdr{background:#fff;border-bottom:1px solid var(--line-2);position:sticky;top:0;z-index:30}
+.hdr-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;min-height:64px;display:flex;align-items:center;gap:26px}
 .logo{display:flex;align-items:center;gap:7px;font-weight:700;font-size:25px;letter-spacing:-.02em;
   border:0;background:transparent;padding:0;color:inherit;font-family:inherit;line-height:1;cursor:pointer}
 .logo:hover{opacity:.75}
@@ -66,17 +59,15 @@ a:hover{text-decoration:underline}
 .icons{display:flex;align-items:center;gap:14px;color:var(--blue)}
 .icons i{position:relative;display:block;width:22px;height:22px}
 .dot{position:absolute;top:-1px;right:-2px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid #fff}
-.btn{
-  border:0;border-radius:9px;background:var(--blue);color:#fff;font-weight:500;
-  padding:11px 18px;transition:background .15s;
-}
+.btn{border:0;border-radius:9px;background:var(--blue);color:#fff;font-weight:500;padding:11px 18px;transition:background .15s}
 .btn:hover{background:var(--blue-hover)}
-.btn.ghost{background:#fff;color:var(--blue);border:1px solid #cddffb}
+.btn.soft{background:var(--blue-soft);color:var(--blue)}
+.btn.soft:hover{background:#dbe8ff}
 .btn:disabled{background:#eceff4;color:#b3b8c2;cursor:not-allowed}
 .ava{width:38px;height:38px;border-radius:50%;background:#dfe3ea;display:grid;place-items:center;font-size:13px;color:#7c828e;font-weight:500;overflow:hidden}
 
-/* ---------- screen 1: chat ---------- */
-.chat-wrap{max-width:var(--maxw);margin:0 auto;background:#fff;display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 140px)}
+/* ---------- экран 1: чат ---------- */
+.chat-wrap{max-width:var(--maxw);margin:0 auto;background:#fff;display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 64px)}
 .dlg-col{border-right:1px solid var(--line-2);padding:18px 0}
 .dlg-head{font-size:19px;font-weight:600;padding:0 22px 16px;display:flex;align-items:center;gap:8px}
 .dlg{display:flex;gap:12px;padding:12px 22px;background:#f7f9fc}
@@ -88,32 +79,22 @@ a:hover{text-decoration:underline}
 .chat-col{display:flex;flex-direction:column}
 .chat-top{padding:14px 24px 12px;border-bottom:1px solid var(--line-2)}
 .chat-title{text-align:center;font-weight:600;font-size:17px}
-.chat-sub{text-align:center;color:var(--muted-2);font-size:13px;margin-top:2px}
-.offer{display:flex;align-items:center;gap:14px;padding:14px 24px;border-bottom:1px solid var(--line-2)}
-.offer img,.offer .ph{width:56px;height:44px;border-radius:8px;object-fit:cover;background:#d9dee6;flex:none}
-.offer-main{flex:1;min-width:0}
-.offer-t{font-weight:500}
-.offer-m{color:var(--muted);font-size:13px;margin-top:3px;display:flex;gap:14px;align-items:center}
 .chat-body{
   flex:1;padding:22px 24px 26px;position:relative;
-  background-color:var(--chat);
-  background-image:var(--doodles);
-  background-size:260px 260px;
+  background-color:var(--chat);background-image:var(--doodles);background-size:260px 260px;
   display:flex;flex-direction:column;justify-content:flex-end;gap:14px;min-height:420px;
 }
-.daychip{align-self:center;background:rgba(255,255,255,.75);color:#5b6472;font-size:13px;padding:4px 12px;border-radius:20px;position:absolute;top:16px;left:50%;transform:translateX(-50%)}
-.bubble{
-  background:#fff;border-radius:14px;padding:16px 18px;max-width:420px;box-shadow:0 1px 3px rgba(20,40,80,.08);
-  font-size:15px;line-height:1.5;
-}
-.bubble code{font-family:inherit;font-weight:700}
-.bubble .cta{display:inline-block;margin-top:6px;font-weight:600;font-size:16px}
+.daychip{background:rgba(255,255,255,.75);color:#5b6472;font-size:13px;padding:4px 12px;border-radius:20px;position:absolute;top:16px;left:50%;transform:translateX(-50%)}
+.bubble{background:#fff;border-radius:14px;padding:18px 20px;max-width:430px;box-shadow:0 1px 3px rgba(20,40,80,.08);font-size:15px;line-height:1.5}
+.bubble h3{font-size:17px;font-weight:600;margin:0 0 10px;line-height:1.35}
+.bubble p{margin:0;color:var(--ink-2)}
+.bubble .cta{display:block;margin-top:16px;font-weight:600;font-size:16px}
 .chat-input{display:flex;align-items:center;gap:12px;padding:14px 24px;border-top:1px solid var(--line-2)}
 .plus{width:34px;height:34px;border-radius:50%;background:#f0f2f6;color:#8b909b;display:grid;place-items:center;font-size:20px}
 .chat-input .fld{flex:1;border:1px solid var(--line);border-radius:22px;padding:10px 18px;color:var(--muted-2)}
 .send{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;flex:none}
 
-/* ---------- screen 2: dashboard ---------- */
+/* ---------- экран 2: кабинет ---------- */
 .lk{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:26px;padding:22px 24px 40px}
 .side{font-size:15px;padding-top:6px}
 .side ul{list-style:none;margin:0;padding:0}
@@ -122,7 +103,7 @@ a:hover{text-decoration:underline}
 .side li.grp{font-weight:600;margin-top:10px}
 .side li.on{background:#e9edf4;font-weight:600}
 .side .cnt{color:var(--muted-2);font-weight:400}
-.side hr{border:0;border-top:1px solid var(--line);margin:12px 12px}
+.side hr{border:0;border-top:1px solid var(--line);margin:12px}
 .lk-main{display:grid;grid-template-columns:1fr;gap:18px}
 .cols{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
 .card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
@@ -143,7 +124,7 @@ a:hover{text-decoration:underline}
 .total b{font-size:17px}
 .chart{position:relative;height:210px;display:grid;grid-template-columns:36px 1fr}
 .yax{display:flex;flex-direction:column-reverse;justify-content:space-between;font-size:12px;color:var(--muted-2);padding-bottom:22px}
-.plot{position:relative;border-left:0}
+.plot{position:relative}
 .grid{position:absolute;inset:0 0 22px 0;display:flex;flex-direction:column-reverse;justify-content:space-between}
 .grid span{border-top:1px dashed #e2e6ee;display:block;height:0}
 .bars{position:absolute;inset:0 0 22px 0;display:flex;align-items:stretch;gap:14px;padding:0 4px}
@@ -167,49 +148,61 @@ a:hover{text-decoration:underline}
 .tbl td:first-child{text-align:left}
 .tbl td b{color:var(--blue);font-weight:500}
 .tbl td.no{color:var(--muted)}
-/* balance card */
 .bal{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .bal .lbl{color:var(--ink-2);font-size:15px;display:flex;align-items:center;gap:6px}
 .bal .val{font-size:31px;font-weight:600;letter-spacing:-.02em;margin:2px 0 14px;font-variant-numeric:tabular-nums}
 .bal small{display:block;color:var(--muted);font-size:13px;line-height:1.6}
 .info-i{width:17px;height:17px;border-radius:50%;background:#e4ecf9;color:var(--blue);font-size:11px;display:inline-grid;place-items:center;font-style:normal}
-.promo-field{
-  display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;
-  padding:11px 14px;background:#fff;flex:1;min-width:0;
-}
-.promo-field .code{font-weight:500;flex:1;letter-spacing:.01em;white-space:nowrap}
-.promo-field .clear{
-  border:0;background:transparent;color:#a8adb8;padding:2px;line-height:0;border-radius:5px;flex:none;
-  display:grid;place-items:center;transition:color .15s,background .15s;
-}
-.promo-field .clear:hover{color:#6b7280;background:#f0f2f6}
-.promo-field.empty .check,.promo-field.empty .clear{display:none}
-.promo-field.empty .code{color:var(--muted-2);font-weight:400}
-.check{width:19px;height:19px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
 .promo-row{display:flex;gap:12px;align-items:center;margin-top:22px;padding-top:20px;border-top:1px solid var(--line-2)}
-.promo-note{color:var(--muted);font-size:14px;margin-top:8px}
-.promo-link{display:inline-block;font-size:15px}
-.promo-link-wrap{display:inline-block;margin-top:14px}
+.promo-field{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:11px 14px;background:#fff;flex:1;min-width:0}
+.promo-field .code{flex:1;white-space:nowrap;color:var(--muted-2)}
+.promo-link{display:inline-block;margin-top:12px;font-size:15px}
 .level-head{display:flex;align-items:center;gap:12px}
 .level-head h3{font-size:23px;margin:0;font-weight:600}
 .badge-blue{margin-left:auto;background:#e7effc;color:var(--blue);border-radius:8px;padding:6px 12px;font-size:14px}
 .shield{width:30px;height:30px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:600}
 .gauge{display:flex;align-items:flex-end;justify-content:flex-end}
+.acc-toggle{display:inline-flex;background:#eef1f6;border-radius:10px;padding:3px;margin-top:18px}
+.acc-toggle span{padding:8px 16px;border-radius:8px;font-size:14px;color:var(--ink-2)}
+.acc-toggle span.on{background:var(--blue);color:#fff;font-weight:500}
 
-/* ---------- modal ---------- */
+/* ---------- модалки ---------- */
 .overlay{position:fixed;inset:0;background:rgba(24,30,40,.45);display:none;place-items:center;z-index:60;padding:24px}
 .overlay.is-open{display:grid}
-.modal{background:#fff;border-radius:16px;padding:34px 40px 26px;width:min(560px,100%);position:relative;box-shadow:0 20px 50px rgba(10,20,40,.25)}
-.modal h3{font-size:27px;margin:0 0 24px;font-weight:600;letter-spacing:-.02em}
+.modal{background:#fff;border-radius:16px;padding:34px 40px 28px;width:min(560px,100%);position:relative;box-shadow:0 20px 50px rgba(10,20,40,.25)}
+.modal h3{font-size:27px;margin:0 0 22px;font-weight:600;letter-spacing:-.02em}
 .modal .x{position:absolute;top:16px;right:18px;border:0;background:#fff;color:#8b909b;font-size:20px;width:32px;height:32px;border-radius:50%;line-height:1}
 .modal .x:hover{background:#f2f4f8}
-.pc{margin-bottom:20px}
 .pc b{display:block;font-weight:600}
 .pc span{display:block;color:var(--ink-2);font-size:15px}
 .pc small{display:block;color:var(--muted-2);font-size:14px;margin-top:2px}
-.modal .btn{float:right;margin-top:6px}
+.modal-win{text-align:center;padding:38px 44px 30px;width:min(520px,100%)}
+.modal-win .seal{width:132px;height:132px;margin:0 auto 22px;display:grid;place-items:center;background:#f4f7fc;border-radius:28px}
+.modal-win h3{font-size:21px;margin:0 0 8px;letter-spacing:-.01em}
+.modal-win p{color:var(--muted);margin:0 0 24px;font-size:15px;line-height:1.5}
+.modal-win .btn{padding:13px 26px;font-size:16px;border-radius:11px}
+.modal-win .close-link{display:block;margin-top:18px;font-weight:500}
 
-/* ---------- screen 4: checkout ---------- */
+/* ---------- экран 3: выбор категории ---------- */
+.cat{max-width:1180px;margin:0 auto;padding:30px 24px 60px;display:grid;grid-template-columns:290px 1fr;gap:34px;align-items:start}
+.cat-aside p{margin:0 0 18px;line-height:1.45}
+.cat-aside a{display:block;margin-bottom:8px}
+.cat-card{background:#fff;border-radius:16px;padding:26px 30px 34px;box-shadow:var(--shadow)}
+.draft{display:flex;align-items:center;gap:14px;padding-bottom:20px;border-bottom:1px dashed var(--line);margin-bottom:24px}
+.draft .ph{width:46px;height:38px;border-radius:8px;background:#eef0f4;flex:none;display:grid;place-items:center;color:#b6bcc6}
+.draft b{display:block;font-weight:500}
+.draft small{color:var(--muted);font-size:14px}
+.draft a{margin-left:auto;white-space:nowrap}
+.cat-card h2{font-size:23px;margin:0 0 22px;font-weight:600}
+.cat-group{margin-bottom:22px}
+.cat-group .lbl{color:var(--muted);font-size:14px;margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:12px}
+.tag{border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px 17px;font-size:15px;transition:border-color .15s}
+.tag:hover{border-color:#b9d0f8}
+.tag.on{border-color:var(--blue);background:var(--blue-soft);box-shadow:inset 0 0 0 1px var(--blue)}
+.cat-card .right{display:flex;justify-content:flex-end;margin-top:34px}
+
+/* ---------- экран 4: чекаут ---------- */
 .co{max-width:1180px;margin:0 auto;padding:26px 24px 60px;display:grid;grid-template-columns:290px 1fr;gap:34px;align-items:start}
 .co-aside .step{color:var(--muted);font-size:14px}
 .co-aside .step b{display:block;color:var(--ink);font-size:18px;font-weight:600;margin-top:2px}
@@ -230,11 +223,10 @@ a:hover{text-decoration:underline}
 .feats svg{flex:none;margin-top:3px}
 .stepper-l{font-size:13px;color:var(--muted);text-align:center;margin-bottom:6px}
 .stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;width:170px}
-.stepper button{background:#fff;border:0;padding:9px 14px;color:var(--blue);font-size:17px}
-.stepper span{flex:1;text-align:center;font-weight:500;font-variant-numeric:tabular-nums}
+.stepper span{padding:9px 14px;color:var(--blue);font-size:17px}
+.stepper .v{flex:1;text-align:center;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
 .pts{text-align:center;font-size:13px;color:var(--muted);margin-top:12px}
 .pts b{display:block;color:var(--ink);font-size:17px;font-weight:600;margin-top:2px}
-.co-card .right{display:flex;justify-content:flex-end;margin-top:6px}
 .pr-head{display:flex;align-items:flex-start;gap:18px}
 .pr-head p{color:var(--muted);margin:6px 0 0;font-size:15px;max-width:640px}
 .switch{margin-left:auto;width:52px;height:30px;border-radius:16px;background:var(--blue);position:relative;flex:none;border:0}
@@ -271,44 +263,33 @@ a:hover{text-decoration:underline}
 .pay-row .btn{padding:14px 30px;font-size:16px;border-radius:11px}
 .pay-row .right{margin-left:auto;display:flex;align-items:center;gap:22px}
 .oferta{text-align:right;color:var(--muted);font-size:13px;margin-top:10px}
-.hr{height:1px;background:var(--line-2);margin:16px 0}
 
-/* ---------- hotspot + proto bar ---------- */
-.hot{position:relative}
-.protobar{
-  position:fixed;left:0;right:0;bottom:0;z-index:80;background:#12161f;color:#e8ebf2;
-  display:flex;align-items:center;gap:18px;padding:11px 20px;font-size:14px;
-  box-shadow:0 -4px 20px rgba(10,15,25,.2);flex-wrap:wrap;
-}
-.protobar .name{font-weight:600;letter-spacing:.01em}
-.protobar .steps{display:flex;gap:8px;flex-wrap:wrap}
-.protobar .steps button{
-  background:transparent;border:1px solid #333c4d;color:#aeb6c4;border-radius:8px;padding:6px 12px;
-}
-.protobar .steps button.on{background:#fff;color:#12161f;border-color:#fff;font-weight:600}
-.protobar .sp{margin-left:auto;display:flex;align-items:center;gap:14px}
-.protobar .lnk{background:transparent;border:1px solid #333c4d;color:#aeb6c4;border-radius:8px;padding:6px 12px}
-.protobar .lnk.on{color:#8fc0ff;border-color:#31527f}
-.toast{
-  position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#12161f;color:#fff;
-  padding:12px 20px;border-radius:11px;z-index:90;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;
-}
+/* ---------- экран 5: успех ---------- */
+.done{max-width:1180px;margin:0 auto;padding:70px 24px 80px}
+.done .in{max-width:560px;margin-left:calc(28% - 40px)}
+.done .party{font-size:64px;line-height:1;margin-bottom:22px}
+.done h1{font-size:27px;margin:0 0 10px;font-weight:600;letter-spacing:-.02em}
+.done p{color:var(--ink-2);margin:0 0 26px}
+.done .acts{display:flex;gap:14px;flex-wrap:wrap}
+.done .acts button{display:flex;align-items:center;gap:9px}
+
+.toast{position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:#12161f;color:#fff;padding:12px 20px;border-radius:11px;z-index:90;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
 
 @media (max-width:1180px){
-  .cols{grid-template-columns:1fr}
-  .lk{grid-template-columns:1fr}
+  .cols,.lk{grid-template-columns:1fr}
   .side{display:none}
   .chat-wrap{grid-template-columns:1fr}
   .dlg-col{display:none}
-  .co{grid-template-columns:1fr}
+  .co,.cat{grid-template-columns:1fr}
   .pr-h,.pr-row{grid-template-columns:1fr 90px 80px 150px;font-size:14px}
   .nav{display:none}
+  .done .in{margin-left:0}
 }
 </style>
 </head>
 <body>
-<!-- ============ SCREEN 1 — сообщение с промокодом ============ -->
+<!-- ============ ЭКРАН 1 — сообщение с промокодом ============ -->
 <section class="screen is-active" id="s1">
   <header class="hdr">
     <div class="hdr-in">
@@ -316,12 +297,12 @@ a:hover{text-decoration:underline}
       <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Коммерческая</span><span>Оценка</span><span>Ипотека</span><span style="color:var(--muted)">Glorax Development</span></nav>
       <div class="hdr-right">
         <div class="icons">
-          <i title="Сообщения"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg></i>
-          <i title="Избранное"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
-          <i title="Поиски"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
-          <i title="Уведомления"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M6 16V10a6 6 0 1 1 12 0v6l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="dot"></span></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M6 16V10a6 6 0 1 1 12 0v6l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="dot"></span></i>
         </div>
-        <button class="btn">Разместить объявление</button>
+        <button class="btn" data-go="s3">Разместить объявление</button>
         <div class="ava">АМ</div>
       </div>
     </div>
@@ -345,17 +326,14 @@ a:hover{text-decoration:underline}
     </aside>
 
     <div class="chat-col">
-      <div class="chat-top">
-        <div class="chat-title">Циан</div>
-      </div>
+      <div class="chat-top"><div class="chat-title">Циан</div></div>
 
       <div class="chat-body">
         <div class="daychip">Сегодня</div>
         <div class="bubble">
-          <code>SPO2OUPGT9A</code> — промокод на скидку 20% при оплате размещения.
-          Активируйте промокод и скидка применится автоматически.
-          Торопитесь, предложение действительно до 01.10.2026
-          <span class="hot" style="display:block;margin-top:14px"><a class="cta" href="#" data-go="s2" data-toast="Промокод SPO2OUPGT9A применён">Активировать промокод</a></span>
+          <h3>Опубликуйте объявление<br>со скидкой 20%</h3>
+          <p>Промокод SPO2OUPGT9A действует для 6 любых объявлений на Циане до 15 сентября</p>
+          <a class="cta" href="#" data-go="s2" data-modal="welcome">Получить скидку</a>
         </div>
       </div>
 
@@ -368,7 +346,7 @@ a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ============ SCREEN 2 — личный кабинет ============ -->
+<!-- ============ ЭКРАН 2 — личный кабинет ============ -->
 <section class="screen" id="s2">
   <header class="hdr">
     <div class="hdr-in">
@@ -380,7 +358,7 @@ a:hover{text-decoration:underline}
           <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
           <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
         </div>
-        <span class="hot"><button class="btn" data-go="s4">+ Разместить объявление</button></span>
+        <button class="btn" data-go="s3">+ Разместить объявление</button>
         <div class="ava">АМ</div>
       </div>
     </div>
@@ -413,6 +391,7 @@ a:hover{text-decoration:underline}
         <li class="sub">Выгрузки</li>
         <li class="sub">Отчёт по звонкам</li>
         <li class="sub">Отчёт о размещении</li>
+        <li class="sub">Отчёт по качеству</li>
         <li class="grp">Жалобы</li>
         <li class="grp">Скрытые объявления</li>
         <li class="grp">Тарифный план</li>
@@ -524,17 +503,10 @@ a:hover{text-decoration:underline}
             <div style="margin-top:16px"><a href="#" onclick="return false">История операций</a></div>
 
             <div class="promo-row">
-              <div class="promo-field" id="promoField">
-                <span class="check"><svg width="11" height="9" viewBox="0 0 12 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg></span>
-                <span class="code" id="promoCode">SPO2OUPGT9A</span>
-                <button class="clear" data-promo="clear" aria-label="Удалить промокод">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9"/></svg>
-                </button>
-              </div>
-              <button class="btn" id="promoApply" disabled data-promo="apply">Применить</button>
+              <div class="promo-field"><span class="code">Введите промокод</span></div>
+              <button class="btn" disabled>Применить</button>
             </div>
-            <div class="promo-note" id="promoNote">−20% на публикацию до 01.11.2026</div>
-            <span class="hot promo-link-wrap"><a class="promo-link" href="#" data-modal="open">У вас 3 применённых промокода</a></span>
+            <a class="promo-link" href="#" data-modal="promos">У вас 1 применённый промокод</a>
           </div>
 
           <div class="card">
@@ -568,26 +540,124 @@ a:hover{text-decoration:underline}
                 </svg>
               </div>
             </div>
+            <div class="acc-toggle"><span class="on">Мой аккаунт</span><span>Сотрудники</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- модалка (экран 3) -->
-  <div class="overlay" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <!-- модалка «скидка ваша» -->
+  <div class="overlay" id="mWelcome" role="dialog" aria-modal="true" aria-labelledby="mwTitle">
+    <div class="modal modal-win">
+      <button class="x" data-close aria-label="Закрыть">×</button>
+      <div class="seal">
+        <svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
+          <path d="M52 6l7.5 7.8 10.4-3.4 4.6 10 10.9.6-1.2 10.9 9.5 5.4-6.6 8.7 6.6 8.7-9.5 5.4 1.2 10.9-10.9.6-4.6 10-10.4-3.4L52 86l-7.5-7.8-10.4 3.4-4.6-10-10.9-.6 1.2-10.9-9.5-5.4 6.6-8.7-6.6-8.7 9.5-5.4-1.2-10.9 10.9-.6 4.6-10 10.4 3.4z" fill="#2f80ff"/>
+          <path d="M36 52.5l11.5 11.5L70 40" fill="none" stroke="#8ce6c0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 id="mwTitle">Скидка 20% на публикацию ваша!</h3>
+      <p>Она будет автоматически применена при размещении объявления</p>
+      <button class="btn" data-go="s3">Разместить объявление</button>
+      <a class="close-link" href="#" data-close>Закрыть</a>
+    </div>
+  </div>
+
+  <!-- модалка «активные промокоды» -->
+  <div class="overlay" id="mPromos" role="dialog" aria-modal="true" aria-labelledby="mpTitle">
     <div class="modal">
-      <button class="x" data-modal="close" aria-label="Закрыть">×</button>
-      <h3 id="pmTitle">Применённые промокоды</h3>
-      <div class="pc"><b>−20% на публикацию</b><span>SPO2OUPGT9A</span><small>Действует до 01.11.2026</small></div>
-      <div class="pc"><b>−5% на продвижение</b><span>DFWRFRW45</span><small>Действует до 01.10.2026</small></div>
-      <div class="pc"><b>500 баллов на продвижение</b><span>DF500</span><small>Действует до 01.10.2026</small></div>
-      <div style="display:flow-root"><span class="hot" style="float:right"><button class="btn" data-modal="close">Понятно</button></span></div>
+      <button class="x" data-close aria-label="Закрыть">×</button>
+      <h3 id="mpTitle">Активные промокоды</h3>
+      <div class="pc"><b>−20% на одну публикацию</b><span>SPO2OUPGT9A</span><small>Действует до 01.11.2026</small></div>
+      <div style="display:flow-root"><button class="btn" style="float:right;margin-top:18px" data-close>Понятно</button></div>
     </div>
   </div>
 </section>
 
-<!-- ============ SCREEN 4 — оплата и публикация ============ -->
+<!-- ============ ЭКРАН 3 — выбор категории ============ -->
+<section class="screen" id="s3">
+  <header class="hdr">
+    <div class="hdr-in">
+      <button type="button" class="logo" data-reset title="Начать сценарий заново"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</button>
+      <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Коммерческая</span><span>Оценка</span><span>Ипотека</span><span style="color:var(--muted)">Glorax Development</span></nav>
+      <div class="hdr-right">
+        <div class="icons">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M6 16V10a6 6 0 1 1 12 0v6l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></i>
+        </div>
+        <button class="btn">+ Разместить объявление</button>
+        <div class="ava">АМ</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="cat">
+    <aside class="cat-aside">
+      <p>Выберите категорию, в которой хотите разместить объявление</p>
+      <a href="#" onclick="return false">Условия и тарифы</a>
+      <a href="#" onclick="return false">Общие правила</a>
+    </aside>
+
+    <div class="cat-card">
+      <div class="draft">
+        <div class="ph">
+          <svg width="20" height="18" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="22" height="18" rx="3"/><circle cx="8" cy="7" r="2"/><path d="M2 16l6-5 5 4 4-3 5 4"/></svg>
+        </div>
+        <div>
+          <b>Продажа бизнеса</b>
+          <small>Россия, Москва, Поварская улица, 33</small>
+        </div>
+        <a href="#" data-toast="Черновик откроется на шаге заполнения">Продолжить заполнение</a>
+      </div>
+
+      <h2>Новое объявление</h2>
+
+      <div class="cat-group">
+        <div class="lbl">Сделка</div>
+        <div class="tags" data-group="deal">
+          <button class="tag">Аренда</button>
+          <button class="tag on">Продажа</button>
+        </div>
+      </div>
+
+      <div class="cat-group">
+        <div class="lbl">Жилая недвижимость</div>
+        <div class="tags" data-group="kind">
+          <button class="tag">Квартира</button>
+          <button class="tag">Квартира в новостройке</button>
+          <button class="tag">Комната или доля</button>
+          <button class="tag">Дом/Дача</button>
+          <button class="tag on">Коттедж</button>
+          <button class="tag">Таунхаус</button>
+          <button class="tag">Часть дома</button>
+          <button class="tag">Участок</button>
+          <button class="tag">Гараж</button>
+        </div>
+      </div>
+
+      <div class="cat-group">
+        <div class="lbl">Коммерческая</div>
+        <div class="tags" data-group="kind">
+          <button class="tag">Офис</button>
+          <button class="tag">Здание</button>
+          <button class="tag">Торговая площадь</button>
+          <button class="tag">Помещение свободного назначения</button>
+          <button class="tag">Производство</button>
+          <button class="tag">Склад</button>
+          <button class="tag">Бизнес</button>
+          <button class="tag">Коммерческая земля</button>
+        </div>
+      </div>
+
+      <div class="right"><button class="btn" data-go="s4">Создать</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЭКРАН 4 — оплата и публикация ============ -->
 <section class="screen" id="s4">
   <header class="hdr">
     <div class="hdr-in">
@@ -623,15 +693,15 @@ a:hover{text-decoration:underline}
         <button class="opt on" data-plan="single">
           <div>
             <h3>Одно размещение</h3>
-            <div class="price">136 ₽ за объявление</div>
+            <div class="price">1920 ₽ за объявление</div>
           </div>
         </button>
 
-        <span class="hot" style="display:block"><button class="opt" data-plan="pack-points">
+        <button class="opt" data-plan="pack">
           <div>
-            <span class="save">Экономия 3 146 ₽</span>
+            <span class="save">Экономия 576 ₽</span>
             <h3>Пакет с публикациями и баллами на продвижение <i class="info-i">i</i></h3>
-            <div class="price">127 ₽ за объявление</div>
+            <div class="price">1344 ₽ за объявление</div>
             <ul class="feats">
               <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Скидка 10–20%: больше объявлений — больше скидка</li>
               <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Скидка на следующие пакеты при покупке без перерыва: растёт с 4% до 15%</li>
@@ -640,24 +710,10 @@ a:hover{text-decoration:underline}
           </div>
           <div>
             <div class="stepper-l">Количество объявлений</div>
-            <div class="stepper"><span style="padding:9px 14px;color:var(--blue)">−</span><span>3</span><span style="padding:9px 14px;color:var(--blue)">+</span></div>
-            <div class="pts">Баллы на продвижение<b>3 473</b></div>
+            <div class="stepper"><span>−</span><span class="v">3</span><span>+</span></div>
+            <div class="pts">Баллы на продвижение<b>1728</b></div>
           </div>
-        </button></span>
-
-        <span class="hot" style="display:block"><button class="opt" data-plan="pack">
-          <div>
-            <span class="save">Экономия 3 146 ₽</span>
-            <h3>Пакет с публикациями <i class="info-i">i</i></h3>
-            <div class="price">127 ₽ за объявление</div>
-          </div>
-          <div>
-            <div class="stepper-l">Количество объявлений</div>
-            <div class="stepper"><span style="padding:9px 14px;color:var(--blue)">−</span><span>3</span><span style="padding:9px 14px;color:var(--blue)">+</span></div>
-          </div>
-        </button></span>
-
-        <div class="right"><button class="btn">К оплате пакета</button></div>
+        </button>
       </div>
 
       <div class="co-card">
@@ -696,18 +752,17 @@ a:hover{text-decoration:underline}
 
       <div class="co-card">
         <div class="sum">
-          <div class="line head" data-amount="3000"><span>Публикация на 30 дней</span><span class="dots"></span><span class="rub">3 000 ₽</span></div>
-          <div class="line disc" id="promoLine" data-base="3000" data-percent="20"><span>Скидка 20% по промокоду SPO2OUPGT9A</span><span class="dots"></span><span class="rub"></span></div>
+          <div class="line head" data-amount="1920"><span>Публикация на 30 дней</span><span class="dots"></span><span class="rub">1 920 ₽</span></div>
+          <div class="line disc" id="promoLine" data-base="1920" data-percent="20"><span>Скидка 20% по промокоду</span><span class="dots"></span><span class="rub"></span></div>
           <div class="chkline"><span class="chkbox"><svg width="11" height="9" viewBox="0 0 12 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg></span>Автопродление публикации</div>
-          <div class="line head" data-amount="1400"><span>Продвижение Топ на 14 дней</span><span class="dots"></span><span class="rub">1 400 ₽</span></div>
-          <div class="line disc" data-base="1400" data-percent="15"><span>Скидка 15% по промокоду DF500</span><span class="dots"></span><span class="rub"></span></div>
-          <div class="line total"><span>Итого</span><span class="dots"></span><span class="rub" id="totalSum">1 190 ₽</span></div>
+          <div class="line head" data-amount="3080"><span>Продвижение Топ на 14 дней</span><span class="dots"></span><span class="rub">3 080 ₽</span></div>
+          <div class="line total"><span>Итого</span><span class="dots"></span><span class="rub" id="totalSum">5 000 ₽</span></div>
         </div>
         <div class="pay-row">
           <a href="#" onclick="return false">Сохранить и выйти</a>
           <div class="right">
-            <a href="#" data-go="s2">Назад</a>
-            <button class="btn" data-toast="Оплата прошла. Объявление опубликовано 🎉">Оплатить и разместить</button>
+            <a href="#" data-go="s3">Назад</a>
+            <button class="btn" data-go="s5">Оплатить и разместить</button>
           </div>
         </div>
         <div class="oferta">Оплачивая услуги, вы соглашаетесь с <a href="#" onclick="return false">офертой</a></div>
@@ -716,29 +771,53 @@ a:hover{text-decoration:underline}
   </div>
 </section>
 
-<div class="toast" id="toast"></div>
+<!-- ============ ЭКРАН 5 — объявление опубликовано ============ -->
+<section class="screen" id="s5">
+  <header class="hdr">
+    <div class="hdr-in">
+      <button type="button" class="logo" data-reset title="Начать сценарий заново"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>циан</button>
+      <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Коммерческая</span><span>Оценка</span><span>Ипотека</span><span style="color:var(--muted)">Glorax Development</span></nav>
+      <div class="hdr-right">
+        <div class="icons">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9aa0ac" stroke-width="1.8"><path d="M6 16V10a6 6 0 1 1 12 0v6l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></i>
+        </div>
+        <button class="btn">+ Разместить объявление</button>
+        <div class="ava">АМ</div>
+      </div>
+    </div>
+  </header>
 
-<!-- ============ панель прототипа ============ -->
-<div class="protobar">
-  <span class="name">Прототип · Промокод в Циан</span>
-  <div class="steps">
-    <button data-step="s1">1 · Сообщение</button>
-    <button data-step="s2">2 · Кабинет</button>
-    <button data-step="s3">3 · Промокоды</button>
-    <button data-step="s4">4 · Оплата</button>
+  <div class="done">
+    <div class="in">
+      <div class="party">🎉</div>
+      <h1>Ваше объявление — на Циане</h1>
+      <p>Вы можете посмотреть и отредактировать его в <a href="#" data-go="s2">личном кабинете</a></p>
+      <div class="acts">
+        <button class="btn soft" data-toast="Здесь откроется карточка объявления">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg>
+          Посмотреть
+        </button>
+        <button class="btn soft" data-toast="Ссылка на объявление скопирована">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a4 4 0 0 0 6 .5l2.5-2.5a4 4 0 1 0-5.7-5.7L11.5 7.5"/><path d="M14 10a4 4 0 0 0-6-.5L5.5 12a4 4 0 1 0 5.7 5.7l1.3-1.3"/></svg>
+          Скопировать ссылку
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="sp">
-    <button class="lnk" id="restartBtn">Начать заново</button>
-  </div>
-</div>
+</section>
+
+<div class="toast" id="toast"></div>
 
 <script>
 (function(){
   var doodle = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23cde0f9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='18' y='22' width='42' height='30' rx='6'/%3E%3Cpath d='M18 44h42'/%3E%3Ccircle cx='110' cy='36' r='14'/%3E%3Cpath d='M110 26v10l7 5'/%3E%3Cpath d='M168 50V26l24 8v24z'/%3E%3Cpath d='M214 24h26v28h-26zM214 34h26'/%3E%3Cpath d='M26 108c0-10 8-16 18-16s18 6 18 16v14H26z'/%3E%3Cpath d='M96 96h34l-6 30H102z'/%3E%3Cpath d='M104 96c0-8 4-12 9-12s9 4 9 12'/%3E%3Cpath d='M164 122V94l16-10 16 10v28z'/%3E%3Cpath d='M176 122v-14h8v14'/%3E%3Ccircle cx='232' cy='108' r='16'/%3E%3Cpath d='M232 92v16h12'/%3E%3Cpath d='M22 178h44l-6 24H28z'/%3E%3Cpath d='M88 200c0-14 10-24 22-24s22 10 22 24z'/%3E%3Cpath d='M162 176h36v26h-36zM162 186h36'/%3E%3Cpath d='M222 176l16 10-16 10z'/%3E%3Cpath d='M30 236h40M96 236h44M170 236h30M222 232l10 10'/%3E%3C/g%3E%3C/svg%3E\")";
   document.documentElement.style.setProperty('--doodles', doodle);
 
-  var screens = { s1:document.getElementById('s1'), s2:document.getElementById('s2'), s4:document.getElementById('s4') };
-  var modal = document.getElementById('promoModal');
+  var screens = ['s1','s2','s3','s4','s5'];
+  var modals = { welcome: document.getElementById('mWelcome'), promos: document.getElementById('mPromos') };
   var toastEl = document.getElementById('toast');
   var tTimer;
 
@@ -749,98 +828,27 @@ a:hover{text-decoration:underline}
     clearTimeout(tTimer);
     tTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
   }
-
-  function show(id){
-    Object.keys(screens).forEach(function(k){ screens[k].classList.toggle('is-active', k===id); });
-    window.scrollTo({top:0, behavior:'auto'});
-    markSteps();
+  function closeModals(){
+    Object.keys(modals).forEach(function(k){ modals[k].classList.remove('is-open'); });
   }
-  function openModal(open){
-    modal.classList.toggle('is-open', open);
-    markSteps();
-  }
-  function markSteps(){
-    var cur = modal.classList.contains('is-open') ? 's3'
-      : (screens.s1.classList.contains('is-active') ? 's1'
-      : screens.s2.classList.contains('is-active') ? 's2' : 's4');
-    document.querySelectorAll('.protobar .steps button').forEach(function(b){
-      b.classList.toggle('on', b.dataset.step===cur);
-    });
+  function show(id, modalName){
+    closeModals();
+    screens.forEach(function(s){ document.getElementById(s).classList.toggle('is-active', s===id); });
+    window.scrollTo({top:0});
+    if(modalName && modals[modalName]) modals[modalName].classList.add('is-open');
   }
 
-  document.addEventListener('click', function(e){
-    var go = e.target.closest('[data-go]');
-    var md = e.target.closest('[data-modal]');
-    var plan = e.target.closest('[data-plan]');
-    var stepBtn = e.target.closest('.protobar .steps button');
-
-    if(go){
-      e.preventDefault();
-      openModal(false);
-      show(go.dataset.go);
-      toast(go.dataset.toast);
-      return;
-    }
-    if(md){
-      e.preventDefault();
-      openModal(md.dataset.modal==='open');
-      return;
-    }
-    if(e.target === modal){ openModal(false); return; }
-    if(plan){
-      document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b===plan); });
-      currentPlan = plan.dataset.plan;
-      updateCheckout();
-      return;
-    }
-    var promoBtn = e.target.closest('[data-promo]');
-    if(promoBtn){
-      e.preventDefault();
-      setPromo(promoBtn.dataset.promo === 'apply');
-      return;
-    }
-    if(stepBtn){
-      var s = stepBtn.dataset.step;
-      if(s==='s3'){ show('s2'); openModal(true); }
-      else { openModal(false); show(s); }
-      return;
-    }
-    if(e.target.closest('[data-reset]')){ e.preventDefault(); resetAll(); return; }
-    var t = e.target.closest('[data-toast]');
-    if(t){ toast(t.dataset.toast); }
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape' && modal.classList.contains('is-open')) openModal(false);
-  });
-
-  function money(n){
-    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0₽';
-  }
   var currentPlan = 'single';
-  var promoOn = true;
-
-  function updateCheckout(){
-    var show = currentPlan === 'single' && promoOn;
-    document.getElementById('promoLine').style.display = show ? '' : 'none';
-    recalc();
+  function money(n){
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
   }
-  function setPromo(on){
-    promoOn = on;
-    document.getElementById('promoField').classList.toggle('empty', !on);
-    document.getElementById('promoCode').textContent = on ? 'SPO2OUPGT9A' : 'Введите промокод';
-    document.getElementById('promoApply').disabled = on;
-    document.getElementById('promoNote').style.display = on ? '' : 'none';
-    updateCheckout();
-  }
-
   function recalc(){
     var sum = 0;
     document.querySelectorAll('.sum .line[data-amount],.sum .line[data-percent]').forEach(function(l){
       var amount;
       if(l.dataset.percent){
         amount = -Math.round(parseFloat(l.dataset.base) * parseFloat(l.dataset.percent) / 100);
-        l.querySelector('.rub').textContent = '\u2212' + money(-amount);
+        l.querySelector('.rub').textContent = '−' + money(-amount);
       } else {
         amount = parseFloat(l.dataset.amount);
       }
@@ -848,17 +856,61 @@ a:hover{text-decoration:underline}
     });
     document.getElementById('totalSum').textContent = money(sum);
   }
-  recalc();
-
+  function updateCheckout(){
+    document.getElementById('promoLine').style.display = currentPlan === 'single' ? '' : 'none';
+    recalc();
+  }
   function resetAll(){
-    openModal(false);
-    document.querySelector('[data-plan="single"]').click();
-    setPromo(true);
+    currentPlan = 'single';
+    document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b.dataset.plan==='single'); });
+    updateCheckout();
     show('s1');
   }
-  document.getElementById('restartBtn').addEventListener('click', resetAll);
 
-  markSteps();
+  document.addEventListener('click', function(e){
+    if(e.target.closest('[data-reset]')){ e.preventDefault(); resetAll(); return; }
+
+    var go = e.target.closest('[data-go]');
+    if(go){
+      e.preventDefault();
+      show(go.dataset.go, go.dataset.modal);
+      toast(go.dataset.toast);
+      return;
+    }
+    var openM = e.target.closest('[data-modal]');
+    if(openM){
+      e.preventDefault();
+      closeModals();
+      var m = modals[openM.dataset.modal];
+      if(m) m.classList.add('is-open');
+      return;
+    }
+    if(e.target.closest('[data-close]')){ e.preventDefault(); closeModals(); return; }
+    if(e.target.classList.contains('overlay')){ closeModals(); return; }
+
+    var plan = e.target.closest('[data-plan]');
+    if(plan){
+      document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b===plan); });
+      currentPlan = plan.dataset.plan;
+      updateCheckout();
+      return;
+    }
+    var tag = e.target.closest('.tags .tag');
+    if(tag){
+      var group = tag.closest('.tags').dataset.group;
+      document.querySelectorAll('.tags[data-group="'+group+'"] .tag').forEach(function(t){ t.classList.remove('on'); });
+      tag.classList.add('on');
+      return;
+    }
+    var t = e.target.closest('[data-toast]');
+    if(t){ e.preventDefault(); toast(t.dataset.toast); }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') closeModals();
+  });
+
+  updateCheckout();
 })();
 </script>
 </body>
