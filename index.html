@@ -368,7 +368,7 @@ a:hover{text-decoration:underline}
     <aside class="side">
       <ul>
         <li>Сводка</li>
-        <li class="on">Мои объявления <span class="cnt">179</span></li>
+        <li class="on">Мои объявления <span class="cnt" id="adsCount">5</span></li>
         <li>Профпоиск</li>
         <li>Мои сделки</li>
         <li>Мои ипотечные заявки</li>
@@ -557,8 +557,8 @@ a:hover{text-decoration:underline}
           <path d="M36 52.5l11.5 11.5L70 40" fill="none" stroke="#8ce6c0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <h3 id="mwTitle">Скидка 20% на публикацию ваша!</h3>
-      <p>Она будет автоматически применена при размещении объявления</p>
+      <h3 id="mwTitle">Скидка 20% на публикацию ваша</h3>
+      <p>Автоматически уменьшим цену, когда будете размещать следующие <span id="promoLeftWin">6</span> объявлений</p>
       <button class="btn" data-go="s3">Разместить объявление</button>
       <a class="close-link" href="#" data-close>Закрыть</a>
     </div>
@@ -569,7 +569,7 @@ a:hover{text-decoration:underline}
     <div class="modal">
       <button class="x" data-close aria-label="Закрыть">×</button>
       <h3 id="mpTitle">Активные промокоды</h3>
-      <div class="pc"><b>−20% на одну публикацию</b><span>SPO2OUPGT9A</span><small>Действует до 01.11.2026</small></div>
+      <div class="pc"><b>−20% на публикацию <span id="promoLeft">6</span> объявлений</b><span>SPO2OUPGT9A</span><small>Действует до 15.09.2026</small></div>
       <div style="display:flow-root"><button class="btn" style="float:right;margin-top:18px" data-close>Понятно</button></div>
     </div>
   </div>
@@ -794,7 +794,7 @@ a:hover{text-decoration:underline}
     <div class="in">
       <div class="party">🎉</div>
       <h1>Ваше объявление — на Циане</h1>
-      <p>Вы можете посмотреть и отредактировать его в <a href="#" data-go="s2">личном кабинете</a></p>
+      <p>Вы можете посмотреть и отредактировать его в <a href="#" data-go="s2" data-modal="promos">личном кабинете</a></p>
       <div class="acts">
         <button class="btn soft" data-toast="Здесь откроется карточка объявления">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg>
@@ -839,6 +839,14 @@ a:hover{text-decoration:underline}
   }
 
   var currentPlan = 'single';
+  var published = false;
+
+  function setPublished(on){
+    published = on;
+    document.getElementById('adsCount').textContent = on ? '6' : '5';
+    document.getElementById('promoLeft').textContent = on ? '5' : '6';
+    document.getElementById('promoLeftWin').textContent = on ? '5' : '6';
+  }
   function money(n){
     return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
   }
@@ -861,6 +869,7 @@ a:hover{text-decoration:underline}
     recalc();
   }
   function resetAll(){
+    setPublished(false);
     currentPlan = 'single';
     document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b.dataset.plan==='single'); });
     updateCheckout();
@@ -873,6 +882,7 @@ a:hover{text-decoration:underline}
     var go = e.target.closest('[data-go]');
     if(go){
       e.preventDefault();
+      if(go.dataset.go === 's5') setPublished(true);
       show(go.dataset.go, go.dataset.modal);
       toast(go.dataset.toast);
       return;
@@ -910,6 +920,7 @@ a:hover{text-decoration:underline}
     if(e.key==='Escape') closeModals();
   });
 
+  setPublished(false);
   updateCheckout();
 })();
 </script>
