@@ -28,6 +28,7 @@
   --maxw:1360px;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{
   margin:0;
   background:var(--page);
@@ -165,6 +166,65 @@ a:hover{text-decoration:underline}
 .acc-toggle{display:inline-flex;background:#eef1f6;border-radius:10px;padding:3px;margin-top:18px}
 .acc-toggle span{padding:8px 16px;border-radius:8px;font-size:14px;color:var(--ink-2)}
 .acc-toggle span.on{background:var(--blue);color:#fff;font-weight:500}
+
+
+/* ---------- экран 2 (B): кабинет частника ---------- */
+.hdr-b .hdr-in{min-height:58px}
+.hdr-b .hdr-nav{border-top:1px solid var(--line-2)}
+.hdr-b .hdr-nav .nav{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:48px;gap:24px;font-size:15px}
+.helper{background:#eef3fb;border-radius:20px;padding:7px 14px;font-size:14px;color:var(--ink-2);white-space:nowrap}
+.pik{color:#ff5a17;font-weight:700;letter-spacing:.02em}
+.lkb{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:26px;padding:22px 24px 50px}
+.side-b{font-size:15px}
+.me{display:flex;gap:14px;align-items:center}
+.me-ava{width:52px;height:52px;border-radius:50%;background:#e8ebf1;flex:none}
+.me-txt b{display:block;font-weight:500;line-height:1.25}
+.me-txt small{color:var(--muted-2);font-size:13px}
+.balance{margin:16px 0 22px;display:flex;align-items:center;gap:10px;font-weight:500}
+.plus-sq{width:30px;height:30px;border-radius:8px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:18px}
+.side-b ul{list-style:none;margin:0;padding:0}
+.side-b li{padding:9px 14px;border-radius:9px;color:var(--ink-2);display:flex;align-items:center;gap:7px;cursor:default}
+.side-b li.on{background:#e9edf4;font-weight:500;color:var(--ink)}
+.side-b li i{font-style:normal;color:var(--muted-2);font-size:12px}
+.side-b .pill{background:#e8ebf1;color:var(--ink-2);border-radius:20px;padding:1px 9px;font-size:13px}
+.side-b .chev{margin-left:auto;color:var(--muted-2)}
+.side-b hr{border:0;border-top:1px solid var(--line);margin:14px}
+.lkb-main{display:grid;gap:16px;align-content:start}
+.card-b{background:#fff;border-radius:14px;padding:24px 28px;position:relative;overflow:hidden}
+.card-b h2{font-size:21px;margin:0 0 8px;font-weight:600;letter-spacing:-.01em}
+.card-b p{color:var(--ink-2);margin:0 0 16px;font-size:15px;max-width:70%}
+.card-b.pad0{padding:0}
+.card-b.sell .art{position:absolute;right:28px;top:26px;font-size:62px;line-height:1}
+.card-head{display:flex;align-items:center;gap:16px;padding:22px 28px;border-bottom:1px solid var(--line-2)}
+.card-head h2{margin:0}
+.card-head a{margin-left:auto;font-size:15px}
+.empty{color:var(--muted);text-align:center;padding:46px 20px}
+.ad-row{display:flex;align-items:center;gap:16px;padding:18px 28px}
+.ad-ph{width:64px;height:48px;border-radius:8px;background:#e8ebf1;flex:none}
+.ad-txt b{display:block;font-weight:500}
+.ad-txt small{color:var(--muted);font-size:14px}
+.ad-status{margin-left:auto;background:var(--green-soft);color:#177a41;border-radius:8px;padding:5px 11px;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.two .col{display:grid;gap:16px;align-content:start}
+.acc{background:#fff;border:1px solid #c9dcfa;border-radius:12px;overflow:hidden}
+.acc-head{display:flex;align-items:center;gap:12px;width:100%;background:#fff;border:0;padding:18px 22px;text-align:left;font-size:15px}
+.acc-head.static{cursor:default}
+.acc-ico{font-size:17px;line-height:1}
+.acc-title{font-weight:500}
+.acc-chev{margin-left:auto;color:var(--blue);transition:transform .15s}
+.acc.is-open .acc-chev{transform:rotate(180deg)}
+.acc-body{display:none;padding:0 22px 22px}
+.acc.is-open .acc-body{display:block}
+.fld-input{width:min(300px,100%);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;color:var(--ink);background:#fff}
+.fld-input::placeholder{color:var(--muted-2)}
+.acc-actions{display:flex;align-items:center;gap:22px;margin-top:16px}
+.promo-link-b{display:inline-block;margin-top:16px;font-size:15px}
+@media (max-width:1180px){
+  .lkb{grid-template-columns:1fr}
+  .side-b{display:none}
+  .two{grid-template-columns:1fr}
+  .hdr-b .hdr-nav{display:none}
+}
 
 /* ---------- модалки ---------- */
 .overlay{position:fixed;inset:0;background:rgba(24,30,40,.45);display:none;place-items:center;z-index:60;padding:24px}
@@ -334,7 +394,7 @@ a:hover{text-decoration:underline}
         <div class="bubble">
           <h3>Опубликуйте объявления<br>со скидкой 20%</h3>
           <p>Промокод SPO2OUPGT9A действует для 6 любых объявлений на Циане до 15 сентября</p>
-          <a class="cta" href="#" data-go="s2" data-modal="welcome">Получить скидку</a>
+          <a class="cta" href="#" data-go="s2">Получить скидку</a>
         </div>
       </div>
 
@@ -347,201 +407,124 @@ a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ============ ЭКРАН 2 — личный кабинет ============ -->
+<!-- ============ ЭКРАН 2 (B) — кабинет частного пользователя ============ -->
 <section class="screen" id="s2">
-  <header class="hdr">
+  <header class="hdr hdr-b">
     <div class="hdr-in">
       <button type="button" class="logo" data-reset title="Начать сценарий заново"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M13 1c4.4 0 8 3.5 8 7.9 0 5.6-8 12.1-8 12.1S5 14.5 5 8.9C5 4.5 8.6 1 13 1z" fill="#0468ff"/><circle cx="13" cy="8.6" r="3" fill="#fff"/><path d="M2 26h22" stroke="#0468ff" stroke-width="2.4" stroke-linecap="round"/></svg>Циан</button>
-      <nav class="nav"><span>Для профи ↗</span><span>Что нового?</span></nav>
       <div class="hdr-right">
+        <span class="helper">✦ Умный помощник</span>
         <div class="icons">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><rect x="3" y="4" width="13" height="13" rx="3"/><path d="M17 9h4v11H8"/></svg></i>
           <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 11h8M8 14h5"/></svg><span class="dot"></span></i>
           <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></i>
           <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg></i>
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0468ff" stroke-width="1.8"><path d="M6 16V10a6 6 0 1 1 12 0v6l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></i>
         </div>
         <button class="btn" data-go="s3">+ Разместить объявление</button>
-        <div class="ava">АМ</div>
+        <div class="ava"></div>
       </div>
+    </div>
+    <div class="hdr-nav">
+      <nav class="nav"><span>Аренда</span><span>Продажа</span><span>Новостройки</span><span>Дома и участки</span><span>Коммерческая</span><span>Ипотека</span><span>Мой дом</span><span>Сделка</span><span>Сервисы</span><span>Приложение Циан</span><span class="pik">ПИК</span></nav>
     </div>
   </header>
 
-  <div class="lk">
-    <aside class="side">
+  <div class="lkb">
+    <aside class="side-b">
+      <div class="me">
+        <div class="me-ava"></div>
+        <div class="me-txt">
+          <b>Qa Qanovitch</b>
+          <small>ID 144369272</small>
+        </div>
+      </div>
+      <div class="balance">Баланс: 100 000 ₽ <span class="plus-sq">+</span></div>
       <ul>
         <li class="on">Сводка</li>
-        <li>Мои объявления <span class="cnt" id="adsCount">5</span></li>
-        <li>Профпоиск</li>
-        <li>Мои сделки</li>
-        <li>Мои ипотечные заявки</li>
-        <li>Зарабатывайте с Циан</li>
-        <li>Заявки <span class="cnt">250</span></li>
-        <li class="grp">Пакеты размещений</li>
-        <li class="sub">Купить пакет</li>
-        <li class="sub">Перс. предложения <span style="color:var(--blue)">+7</span></li>
-        <li class="sub">Мои пакеты</li>
-        <li class="sub">Собрать свой пакет</li>
-        <li class="grp">Кошелёк</li>
-        <li class="sub">Пополнение счёта</li>
-        <li class="sub">Автоплатёж</li>
-        <li class="sub">Операции</li>
-        <li class="sub">Привязанные карты</li>
-        <li class="grp">Уведомления <span class="cnt">46</span></li>
-        <li class="grp">Сообщения <span class="cnt">5</span></li>
-        <li class="grp">Отчёты</li>
-        <li class="sub">Журнал объявлений</li>
-        <li class="sub">Выгрузки</li>
-        <li class="sub">Отчёт по звонкам</li>
-        <li class="sub">Отчёт о размещении</li>
-        <li class="sub">Отчёт по качеству</li>
-        <li class="grp">Жалобы</li>
-        <li class="grp">Скрытые объявления</li>
-        <li class="grp">Тарифный план</li>
-        <li class="grp">Качество сервиса</li>
-        <li class="grp">Профиль</li>
-        <li class="sub">Подтверждение аккаунта</li>
-        <li class="sub">Мои подписки</li>
+        <li>Профиль</li>
+        <li>Избранное <i>↗</i></li>
+        <li>Сообщения <i>↗</i> <span class="pill">1</span></li>
+        <li>Кошелёк <span class="chev">⌄</span></li>
+        <li>Уведомления <span class="pill">1</span></li>
+        <li>Жалобы</li>
+        <li>Дубли моих объявлений</li>
+        <li>Подбор и покупка новостройки</li>
+        <li>Реферальная программа <i>↗</i></li>
+        <li>Сохранённые поиски</li>
+        <li>Скрытые объявления <i>↗</i></li>
+        <li>Мои подписки <i>↗</i></li>
+        <li>Ипотека <i>↗</i></li>
       </ul>
       <hr>
-      <ul><li>Настройки</li><li>Поддержка</li><li>Выйти</li></ul>
+      <ul><li>Выйти</li></ul>
     </aside>
 
-    <div class="lk-main">
-      <div class="card">
-        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-          <h2>Статистика по всем объявлениям</h2>
-          <div style="margin-left:auto;display:flex;gap:12px;flex-wrap:wrap">
-            <div class="seg"><button class="on">За 7 дней</button><button>За 30 дней</button><button>С начала года</button></div>
-            <div class="seg"><button>📅 Выбрать период</button></div>
-          </div>
+    <div class="lkb-main">
+      <div class="card-b sell">
+        <h2>Поможем продать жильё безопасно и выгодно</h2>
+        <p>Подберём опытного риелтора и поддержим до продажи</p>
+        <button class="btn soft">Мне интересно</button>
+        <div class="art">🏙️</div>
+      </div>
+
+      <div class="card-b">
+        <h2>Мой дом</h2>
+        <p>Оценка стоимости и тренды рынка: расскажем всё, что нужно для выгодной сдачи вашего жилья и поиска нового</p>
+        <button class="btn soft">Добавить объект</button>
+      </div>
+
+      <div class="card-b pad0">
+        <div class="card-head">
+          <h2>Мои объявления</h2>
+          <a href="#" data-go="s3">+ Разместить объявление</a>
         </div>
-        <div class="chips">
-          <span class="chip">Объявления</span>
-          <span class="chip">Показы <b>5 451 950</b></span>
-          <span class="chip on">Просмотры <b>1 958</b></span>
-          <span class="chip">Отклики <b>58</b></span>
-          <span class="chip">Звонки <b>157</b></span>
-          <span class="chip">В избранном <b>27</b></span>
-        </div>
-        <div class="stat-row">
-          <div class="stat-l">
-            <h3>Просмотры</h3>
-            <p>Сколько раз пользователи открыли и посмотрели ваши объявления.</p>
-            <a href="#" onclick="return false">Подробнее</a>
-            <div class="total"><span>Всего за 7 дней</span><span class="dots"></span><b>1 958</b></div>
+        <div class="empty" id="adsEmpty">У вас пока нет объявлений :(</div>
+        <div class="ad-row" id="adsRow" hidden>
+          <div class="ad-ph"></div>
+          <div class="ad-txt">
+            <b>Коттедж, продажа</b>
+            <small>Россия, Москва, Поварская улица, 33</small>
           </div>
-          <div>
-            <div class="chart">
-              <div class="yax"><span>0</span><span>100</span><span>200</span><span>300</span><span>400</span></div>
-              <div class="plot">
-                <div class="grid"><span></span><span></span><span></span><span></span><span></span></div>
-                <div class="bars">
-                  <div class="bar"><div class="b1" style="height:38%"></div></div>
-                  <div class="bar"><div class="b1" style="height:54%"></div></div>
-                  <div class="bar"><div class="b1" style="height:37%"></div></div>
-                  <div class="bar"><div class="b2" style="height:74%"></div><div class="b1" style="height:20%"></div></div>
-                  <div class="bar"><div class="b2" style="height:33%"></div><div class="b1" style="height:34%"></div></div>
-                  <div class="bar"><div class="b2" style="height:20%"></div><div class="b1" style="height:47%"></div></div>
-                  <div class="bar"><div class="b1" style="height:38%"></div></div>
-                </div>
-                <div class="xax"><span>25.03</span><span>26.03</span><span>27.03</span><span>28.03</span><span>29.03</span><span>30.03</span><span>31.03</span></div>
-              </div>
-            </div>
-            <div class="legend">
-              <span><i style="background:#8ba4f0"></i>Базовые просмотры</span>
-              <span><i style="background:#f6c37a"></i>Просмотры от услуг продвижения</span>
-              <span><i style="background:#9aa0ac;border-radius:50%"></i>Работало продвижение</span>
-            </div>
-          </div>
+          <span class="ad-status">Опубликовано</span>
         </div>
       </div>
 
-      <div class="cols">
-        <div style="display:grid;gap:18px">
-          <div class="card promo-banner">
-            <h3>Подключите скидку<br>на ипотеку</h3>
-            <p>Предложите покупателю пониженную ставку и продайте квартиру на вторичке быстрее</p>
-            <button class="btn">Узнать подробнее</button>
-            <div class="emoji">🪙</div>
-          </div>
-          <div class="card promo-banner">
-            <h3>Зарабатывайте до 6 000 ₽<br>за первую Циан.Сделку</h3>
-            <ul class="bullets">
-              <li>до 3 000 ₽ — бонусное вознаграждение за присоединение к программе до 31 мая 2026.</li>
-              <li>до 3 000 ₽ — за проведение Циан.Сделки</li>
-            </ul>
-            <div style="display:flex;align-items:center;gap:20px">
-              <button class="btn">Присоединиться к программе</button>
-              <a href="#" onclick="return false">Подробнее</a>
+      <div class="two">
+        <div class="col">
+          <div class="acc" id="accPromo">
+            <button type="button" class="acc-head" data-acc="promo">
+              <span class="acc-ico">🎁</span>
+              <span class="acc-title">Ввести промо-код</span>
+              <span class="acc-chev">⌄</span>
+            </button>
+            <div class="acc-body">
+              <input class="fld-input" id="promoInput" type="text" placeholder="Введите промо-код" autocomplete="off">
+              <div class="acc-actions">
+                <button class="btn" data-promo-apply>Применить</button>
+                <a href="#" data-acc-close>Отмена</a>
+              </div>
+              <a class="promo-link-b" id="promoLinkB" href="#" data-modal="promos" hidden>У вас 1 активный промокод</a>
             </div>
-            <div class="emoji">💵</div>
           </div>
-          <div class="card">
-            <h2>Мои объявления</h2>
-            <table class="tbl">
-              <tr><th>Аренда</th><th>Активные</th><th>Неактивные</th></tr>
-              <tr><td>Квартиры и комнаты</td><td><b>6</b></td><td><b>39</b></td></tr>
-              <tr><td>Загородная недвижимость</td><td class="no">нет</td><td><b>2</b></td></tr>
-              <tr><td>Коммерческая недвижимость</td><td><b>74</b></td><td><b>168</b></td></tr>
-            </table>
+
+          <div class="acc">
+            <div class="acc-head static">
+              <span class="acc-ico">✉️</span>
+              <span class="acc-title">Подтвердить почту</span>
+              <span class="acc-chev">⌄</span>
+            </div>
           </div>
         </div>
 
-        <div style="display:grid;gap:18px">
-          <div class="card">
-            <div class="bal">
-              <div>
-                <div class="lbl">Баланс</div>
-                <div class="val">44 873 ₽</div>
-                <button class="btn">Пополнить</button>
-              </div>
-              <div>
-                <div class="lbl">Баллы на продвижение <i class="info-i">i</i></div>
-                <div class="val">64 904 Б</div>
-                <small>1 418 Б до 9 ноября</small>
-                <small>63 486 Б до 28 ноября</small>
-              </div>
-            </div>
-            <div style="margin-top:16px"><a href="#" onclick="return false">История операций</a></div>
-
-            <div class="promo-row">
-              <div class="promo-field"><span class="code">Введите промокод</span></div>
-              <button class="btn soft" data-toast="Введите промокод в поле слева">Применить</button>
-            </div>
-            <a class="promo-link" href="#" data-modal="promos">У вас 1 активный промокод</a>
+        <div class="col">
+          <div class="card-b pad0">
+            <div class="card-head"><h2>Избранное</h2></div>
+            <div class="empty">В избранном нет объявлений</div>
           </div>
-
-          <div class="card">
-            <div class="level-head">
-              <span class="shield">1</span>
-              <h3>Стартовый</h3>
-              <span class="badge-blue">Бонусы</span>
-            </div>
-            <p style="color:var(--muted);margin:14px 0 10px">Публикуйте качественные объявления и выполняйте задания, чтобы перейти на следующие уровни и получить бонусы.</p>
-            <a href="#" onclick="return false">О программе «Работаю честно»</a>
-            <p style="font-weight:600;color:var(--ink);margin:18px 0 8px">Как перейти на 2 уровень</p>
-            <div style="display:flex;gap:9px;align-items:center;color:var(--ink-2)">
-              <svg width="16" height="16" viewBox="0 0 12 10" fill="none" stroke="#0468ff" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>
-              Пройдите <a href="#" onclick="return false">идентификацию</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <h2 style="font-size:23px">Благодарим за сотрудничество</h2>
-            <div style="display:grid;grid-template-columns:1fr 150px;gap:16px;align-items:center;margin-top:10px">
-              <p style="color:var(--muted);margin:0">Благодарим за сотрудничество и достоверную информацию в опубликованных объявлениях.</p>
-              <div class="gauge">
-                <svg width="150" height="88" viewBox="0 0 150 88" aria-label="Шкала нарушений">
-                  <path d="M14 78a61 61 0 0 1 24-49" stroke="#2fb35f" stroke-width="13" fill="none" stroke-linecap="round"/>
-                  <path d="M46 24a61 61 0 0 1 26-6" stroke="#8ecb3f" stroke-width="13" fill="none" stroke-linecap="round"/>
-                  <path d="M80 18a61 61 0 0 1 25 8" stroke="#f2c53d" stroke-width="13" fill="none" stroke-linecap="round"/>
-                  <path d="M112 31a61 61 0 0 1 24 47" stroke="#e5352d" stroke-width="13" fill="none" stroke-linecap="round"/>
-                  <path d="M75 78L44 40" stroke="#3a3f4a" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="75" cy="78" r="5" fill="#3a3f4a"/>
-                  <text x="75" y="86" text-anchor="middle" font-size="12" fill="#7a7f8a" font-family="inherit">Нарушения</text>
-                </svg>
-              </div>
-            </div>
-            <div class="acc-toggle"><span class="on">Мой аккаунт</span><span>Сотрудники</span></div>
+          <div class="card-b pad0">
+            <div class="card-head"><h2>Сохранённые поиски</h2></div>
+            <div class="empty">Нет сохранённых поисков</div>
           </div>
         </div>
       </div>
@@ -575,6 +558,7 @@ a:hover{text-decoration:underline}
     </div>
   </div>
 </section>
+
 
 <!-- ============ ЭКРАН 3 — выбор категории ============ -->
 <section class="screen" id="s3">
@@ -844,9 +828,17 @@ a:hover{text-decoration:underline}
 
   function setPublished(on){
     published = on;
-    document.getElementById('adsCount').textContent = on ? '6' : '5';
     document.getElementById('promoLeft').textContent = on ? '5' : '6';
     document.getElementById('promoLeftWin').textContent = on ? '5' : '6';
+    document.getElementById('adsEmpty').hidden = on;
+    document.getElementById('adsRow').hidden = !on;
+  }
+  function setPromoApplied(on){
+    document.getElementById('promoLinkB').hidden = !on;
+    if(!on) document.getElementById('promoInput').value = '';
+  }
+  function openAcc(on){
+    document.getElementById('accPromo').classList.toggle('is-open', on);
   }
   function money(n){
     return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
@@ -871,6 +863,8 @@ a:hover{text-decoration:underline}
   }
   function resetAll(){
     setPublished(false);
+    setPromoApplied(false);
+    openAcc(false);
     currentPlan = 'single';
     document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b.dataset.plan==='single'); });
     updateCheckout();
@@ -899,6 +893,20 @@ a:hover{text-decoration:underline}
     if(e.target.closest('[data-close]')){ e.preventDefault(); closeModals(); return; }
     if(e.target.classList.contains('overlay')){ closeModals(); return; }
 
+    if(e.target.closest('[data-acc]')){
+      e.preventDefault();
+      openAcc(!document.getElementById('accPromo').classList.contains('is-open'));
+      return;
+    }
+    if(e.target.closest('[data-acc-close]')){ e.preventDefault(); openAcc(false); return; }
+    if(e.target.closest('[data-promo-apply]')){
+      e.preventDefault();
+      setPromoApplied(true);
+      closeModals();
+      document.getElementById('mWelcome').classList.add('is-open');
+      return;
+    }
+
     var plan = e.target.closest('[data-plan]');
     if(plan){
       document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b===plan); });
@@ -922,6 +930,7 @@ a:hover{text-decoration:underline}
   });
 
   setPublished(false);
+  setPromoApplied(false);
   updateCheckout();
 })();
 </script>
