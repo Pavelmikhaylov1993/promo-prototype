@@ -504,7 +504,7 @@ a:hover{text-decoration:underline}
                 <button class="btn" data-promo-apply>Применить</button>
                 <a href="#" data-acc-close>Отмена</a>
               </div>
-              <a class="promo-link-b" id="promoLinkB" href="#" data-modal="promos" hidden>У вас 1 активный промокод</a>
+              <a class="promo-link-b" id="promoLinkB" href="#" data-modal="promos">У вас 1 активный промокод</a>
             </div>
           </div>
 
@@ -834,7 +834,6 @@ a:hover{text-decoration:underline}
     document.getElementById('adsRow').hidden = !on;
   }
   function setPromoApplied(on){
-    document.getElementById('promoLinkB').hidden = !on;
     if(!on) document.getElementById('promoInput').value = '';
   }
   function openAcc(on){
