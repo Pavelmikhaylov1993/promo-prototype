@@ -273,6 +273,8 @@ a:hover{text-decoration:underline}
 .co-main{display:grid;gap:18px}
 .co-card{background:#fff;border-radius:16px;padding:26px 30px;box-shadow:var(--shadow)}
 .co-card h2{font-size:24px;margin:0 0 18px;font-weight:600}
+.pub-fixed{font-size:16px;color:var(--ink);padding:6px 0 4px}
+.pub-fixed b{font-size:26px;font-weight:700;margin-right:2px}
 .opt{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px;cursor:pointer;transition:border-color .15s,box-shadow .15s;background:#fff;display:grid;grid-template-columns:1fr auto;gap:18px;text-align:left;width:100%}
 .opt:hover{border-color:#b9d0f8}
 .opt.on{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
@@ -675,30 +677,7 @@ a:hover{text-decoration:underline}
       <div class="co-card">
         <h2>Публикация</h2>
 
-        <button class="opt on" data-plan="single">
-          <div>
-            <h3>Одно размещение</h3>
-            <div class="price">1920 ₽ за объявление</div>
-          </div>
-        </button>
-
-        <button class="opt" data-plan="pack">
-          <div>
-            <span class="save">Экономия 576 ₽</span>
-            <h3>Пакет с публикациями и баллами на продвижение <i class="info-i">i</i></h3>
-            <div class="price">1344 ₽ за объявление</div>
-            <ul class="feats">
-              <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Скидка 10–20%: больше объявлений — больше скидка</li>
-              <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Скидка на следующие пакеты при покупке без перерыва: растёт с 4% до 15%</li>
-              <li><svg width="14" height="12" viewBox="0 0 12 10" fill="none" stroke="#1aa053" stroke-width="2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg>Кешбэк баллами на продвижение 30%</li>
-            </ul>
-          </div>
-          <div>
-            <div class="stepper-l">Количество объявлений</div>
-            <div class="stepper"><span>−</span><span class="v">3</span><span>+</span></div>
-            <div class="pts">Баллы на продвижение<b>1728</b></div>
-          </div>
-        </button>
+        <div class="pub-fixed"><b>200</b> ₽/30 дней</div>
       </div>
 
       <div class="co-card">
@@ -737,8 +716,8 @@ a:hover{text-decoration:underline}
 
       <div class="co-card">
         <div class="sum">
-          <div class="line head" id="pubLine" data-amount="1920"><span id="pubLabel">Публикация на 30 дней</span><span class="dots"></span><span class="rub"></span></div>
-          <div class="line disc" id="promoLine" data-base="1920" data-percent="20"><span>Скидка 20% по промокоду</span><span class="dots"></span><span class="rub"></span></div>
+          <div class="line head" id="pubLine" data-amount="200"><span id="pubLabel">Публикация на 30 дней</span><span class="dots"></span><span class="rub"></span></div>
+          <div class="line disc" id="promoLine" data-base="200" data-percent="20"><span>Скидка 20% по промокоду</span><span class="dots"></span><span class="rub"></span></div>
           <div class="chkline"><span class="chkbox"><svg width="11" height="9" viewBox="0 0 12 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg></span>Автопродление публикации</div>
           <div class="line head" id="promoteLine" data-amount="3080"><span id="promoteLabel">Продвижение Топ на 14 дней</span><span class="dots"></span><span class="rub"></span></div>
           <div class="line disc" id="termLine" data-base="3080" data-percent="15"><span id="termLabel">Скидка 15% за срок продвижения</span><span class="dots"></span><span class="rub"></span></div>
@@ -824,7 +803,6 @@ a:hover{text-decoration:underline}
     if(modalName && modals[modalName]) modals[modalName].classList.add('is-open');
   }
 
-  var currentPlan = 'single';
   var published = false;
 
   function setPublished(on){
@@ -857,20 +835,16 @@ a:hover{text-decoration:underline}
     });
     document.getElementById('totalSum').textContent = money(sum);
   }
-  var RATE = 220;            // ставка продвижения, ₽/день
-  var PRICE_SINGLE = 1920;   // одно размещение
-  var PRICE_PACK = 1344 * 3; // пакет: 1344 ₽ × 3 объявления
+  var RATE = 220;         // ставка продвижения, ₽/день
+  var PRICE_PUB = 200;    // публикация — фиксированная цена
   var termDays = 14, termPct = 15;
 
   function updateCheckout(){
-    // публикация
-    var pub = currentPlan === 'single' ? PRICE_SINGLE : PRICE_PACK;
+    // публикация — цена фиксированная, выбора пакетов нет
     var pubLine = document.getElementById('pubLine');
-    pubLine.dataset.amount = pub;
-    pubLine.querySelector('.rub').textContent = money(pub);
-
-    // скидка по промокоду — только для одного размещения
-    document.getElementById('promoLine').style.display = currentPlan === 'single' ? '' : 'none';
+    pubLine.dataset.amount = PRICE_PUB;
+    pubLine.querySelector('.rub').textContent = money(PRICE_PUB);
+    document.getElementById('promoLine').dataset.base = PRICE_PUB;
 
     // продвижение и скидка за срок
     var promote = RATE * termDays;
@@ -895,8 +869,6 @@ a:hover{text-decoration:underline}
     document.querySelectorAll('.term button').forEach(function(b){ b.classList.toggle('on', b.dataset.days === '14'); });
     setPromoApplied(false);
     openAcc(false);
-    currentPlan = 'single';
-    document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b.dataset.plan==='single'); });
     updateCheckout();
     show('s1');
   }
@@ -944,13 +916,6 @@ a:hover{text-decoration:underline}
       return;
     }
 
-    var plan = e.target.closest('[data-plan]');
-    if(plan){
-      document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b===plan); });
-      currentPlan = plan.dataset.plan;
-      updateCheckout();
-      return;
-    }
     var tag = e.target.closest('.tags .tag');
     if(tag){
       var group = tag.closest('.tags').dataset.group;
