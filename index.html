@@ -28,6 +28,7 @@
   --maxw:1360px;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{
   margin:0;
   background:var(--page);
@@ -570,7 +571,7 @@ a:hover{text-decoration:underline}
     <div class="modal">
       <button class="x" data-close aria-label="Закрыть">×</button>
       <h3 id="mpTitle">Активные промокоды</h3>
-      <div class="pc"><b>−20% на публикацию <span id="promoLeft">6</span> объявлений</b><span>SPO2OUPGT9A</span><small>Действует до 15.09.2026</small></div>
+      <div class="pc"><b>−20% на публикацию <span id="promoLeft">6</span> объявлений</b><span>SPO2OUPGT9A</span><small>Действует до 15.10.2026</small></div>
       <div style="display:flow-root"><button class="btn" style="float:right;margin-top:18px" data-close>Понятно</button></div>
     </div>
   </div>
@@ -744,19 +745,20 @@ a:hover{text-decoration:underline}
 
         <p style="font-weight:600;margin:22px 0 0">Срок продвижения</p>
         <div class="term">
-          <button>Посуточно</button>
-          <button>7 дней<small>Скидка 10%</small></button>
-          <button class="on">14 дней<small>Скидка 15%</small></button>
-          <button>30 дней<small>Скидка 20%</small></button>
+          <button data-days="1" data-pct="0">Посуточно</button>
+          <button data-days="7" data-pct="10">7 дней<small>Скидка 10%</small></button>
+          <button class="on" data-days="14" data-pct="15">14 дней<small>Скидка 15%</small></button>
+          <button data-days="30" data-pct="20">30 дней<small>Скидка 20%</small></button>
         </div>
       </div>
 
       <div class="co-card">
         <div class="sum">
-          <div class="line head" data-amount="1920"><span>Публикация на 30 дней</span><span class="dots"></span><span class="rub">1 920 ₽</span></div>
+          <div class="line head" id="pubLine" data-amount="1920"><span id="pubLabel">Публикация на 30 дней</span><span class="dots"></span><span class="rub"></span></div>
           <div class="line disc" id="promoLine" data-base="1920" data-percent="20"><span>Скидка 20% по промокоду</span><span class="dots"></span><span class="rub"></span></div>
           <div class="chkline"><span class="chkbox"><svg width="11" height="9" viewBox="0 0 12 10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M1 5l3.4 3.4L11 1.6"/></svg></span>Автопродление публикации</div>
-          <div class="line head" data-amount="3080"><span>Продвижение Топ на 14 дней</span><span class="dots"></span><span class="rub">3 080 ₽</span></div>
+          <div class="line head" id="promoteLine" data-amount="3080"><span id="promoteLabel">Продвижение Топ на 14 дней</span><span class="dots"></span><span class="rub"></span></div>
+          <div class="line disc" id="termLine" data-base="3080" data-percent="15"><span id="termLabel">Скидка 15% за срок продвижения</span><span class="dots"></span><span class="rub"></span></div>
           <div class="line total"><span>Итого</span><span class="dots"></span><span class="rub" id="totalSum">5 000 ₽</span></div>
         </div>
         <div class="pay-row">
@@ -865,12 +867,42 @@ a:hover{text-decoration:underline}
     });
     document.getElementById('totalSum').textContent = money(sum);
   }
+  var RATE = 220;            // ставка продвижения, ₽/день
+  var PRICE_SINGLE = 1920;   // одно размещение
+  var PRICE_PACK = 1344 * 3; // пакет: 1344 ₽ × 3 объявления
+  var termDays = 14, termPct = 15;
+
   function updateCheckout(){
+    // публикация
+    var pub = currentPlan === 'single' ? PRICE_SINGLE : PRICE_PACK;
+    var pubLine = document.getElementById('pubLine');
+    pubLine.dataset.amount = pub;
+    pubLine.querySelector('.rub').textContent = money(pub);
+
+    // скидка по промокоду — только для одного размещения
     document.getElementById('promoLine').style.display = currentPlan === 'single' ? '' : 'none';
+
+    // продвижение и скидка за срок
+    var promote = RATE * termDays;
+    var promoteLine = document.getElementById('promoteLine');
+    promoteLine.dataset.amount = promote;
+    promoteLine.querySelector('.rub').textContent = money(promote);
+    document.getElementById('promoteLabel').textContent = termDays === 1
+      ? 'Продвижение Топ посуточно'
+      : 'Продвижение Топ на ' + termDays + ' дней';
+
+    var termLine = document.getElementById('termLine');
+    termLine.dataset.base = promote;
+    termLine.dataset.percent = termPct;
+    document.getElementById('termLabel').textContent = 'Скидка ' + termPct + '% за срок продвижения';
+    termLine.style.display = termPct > 0 ? '' : 'none';
+
     recalc();
   }
   function resetAll(){
     setPublished(false);
+    termDays = 14; termPct = 15;
+    document.querySelectorAll('.term button').forEach(function(b){ b.classList.toggle('on', b.dataset.days === '14'); });
     currentPlan = 'single';
     document.querySelectorAll('[data-plan]').forEach(function(b){ b.classList.toggle('on', b.dataset.plan==='single'); });
     updateCheckout();
@@ -898,6 +930,15 @@ a:hover{text-decoration:underline}
     }
     if(e.target.closest('[data-close]')){ e.preventDefault(); closeModals(); return; }
     if(e.target.classList.contains('overlay')){ closeModals(); return; }
+
+    var term = e.target.closest('.term button');
+    if(term){
+      document.querySelectorAll('.term button').forEach(function(b){ b.classList.toggle('on', b===term); });
+      termDays = parseInt(term.dataset.days, 10);
+      termPct = parseInt(term.dataset.pct, 10);
+      updateCheckout();
+      return;
+    }
 
     var plan = e.target.closest('[data-plan]');
     if(plan){
