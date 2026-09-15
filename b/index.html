@@ -901,8 +901,6 @@ a:hover{text-decoration:underline}
     if(e.target.closest('[data-promo-apply]')){
       e.preventDefault();
       setPromoApplied(true);
-      closeModals();
-      document.getElementById('mWelcome').classList.add('is-open');
       return;
     }
 
