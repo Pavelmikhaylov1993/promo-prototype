@@ -558,7 +558,7 @@ a:hover{text-decoration:underline}
         </svg>
       </div>
       <h3 id="mwTitle">Скидка 20% на публикацию ваша</h3>
-      <p>Автоматически уменьшим цену у следующего объявления, которое будете размещать не из пакета</p>
+      <p>Автоматически уменьшим цену у следующего объявления, которое вы разместите</p>
       <button class="btn" data-go="s3">Разместить объявление</button>
       <a class="close-link" href="#" data-close>Закрыть</a>
     </div>
@@ -854,7 +854,7 @@ a:hover{text-decoration:underline}
   var termDays = 14, termPct = 15;
 
   function updateCheckout(){
-    // публикация — цена фиксированная, выбора пакетов нет
+    // публикация — цена фиксированная
     var pubLine = document.getElementById('pubLine');
     pubLine.dataset.amount = PRICE_PUB;
     pubLine.querySelector('.rub').textContent = money(PRICE_PUB);
