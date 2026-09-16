@@ -199,10 +199,13 @@ a:hover{text-decoration:underline}
 .card-head h2{margin:0}
 .card-head a{margin-left:auto;font-size:15px}
 .empty{color:var(--muted);text-align:center;padding:46px 20px}
-.ad-row{display:flex;align-items:center;gap:16px;padding:18px 28px}
-.ad-ph{width:64px;height:48px;border-radius:8px;background:#e8ebf1;flex:none}
-.ad-txt b{display:block;font-weight:500}
-.ad-txt small{color:var(--muted);font-size:14px}
+.ad-row{display:flex;align-items:center;gap:16px;padding:18px 28px;border-top:1px solid var(--line)}
+.card-head + .ad-row{border-top:0}
+.ad-ph{width:96px;height:72px;border-radius:10px;background:#e8ebf1 center/cover no-repeat;flex:none}
+.ad-ph.ph-new{background:linear-gradient(135deg,#dfe7f5,#eef2f8 60%,#e5ecf7)}
+.ad-txt b{display:block;font-weight:600;font-size:18px;margin-bottom:2px}
+.ad-txt small{display:block;color:var(--muted);font-size:14px;line-height:1.45}
+.ad-txt .metro{color:#e8622c;font-size:13px}
 .ad-status{margin-left:auto;background:var(--green-soft);color:#177a41;border-radius:8px;padding:5px 11px;font-size:13px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .two .col{display:grid;gap:16px;align-content:start}
@@ -395,7 +398,7 @@ a:hover{text-decoration:underline}
         <div class="daychip">Сегодня</div>
         <div class="bubble">
           <h3>Опубликуйте объявления<br>со скидкой 20%</h3>
-          <p>Промокод SPO2OUPGT9A действует для 6 любых объявлений на Циане до 15 сентября</p>
+          <p>Промокод SPO2OUPGT9A действует для 1 любого объявления на Циане до 18 октября</p>
           <a class="cta" href="#" data-go="s2" data-modal="welcome">Получить скидку</a>
         </div>
       </div>
@@ -481,12 +484,23 @@ a:hover{text-decoration:underline}
           <h2>Мои объявления</h2>
           <a href="#" data-go="s3">+ Разместить объявление</a>
         </div>
-        <div class="empty" id="adsEmpty">У вас пока нет объявлений :(</div>
-        <div class="ad-row" id="adsRow" hidden>
-          <div class="ad-ph"></div>
+        <div class="ad-row">
+          <div class="ad-ph" style="background-image:url(data:image/jpeg;base64,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)"></div>
           <div class="ad-txt">
-            <b>Коттедж, продажа</b>
-            <small>Россия, Москва, Поварская улица, 33</small>
+            <b>16 500 000 ₽</b>
+            <small>2-комн. кв. · 63,3 м² · 24/25 этаж</small>
+            <small><span class="metro">Ⓜ</span> Проспект Большевиков · 2 мин.</small>
+            <small>Санкт-Петербург, просп. Пятилеток, 2</small>
+          </div>
+          <span class="ad-status">Опубликовано</span>
+        </div>
+        <div class="ad-row" id="adsRow" hidden>
+          <div class="ad-ph ph-new"></div>
+          <div class="ad-txt">
+            <b>24 700 000 ₽</b>
+            <small>Коттедж · 182 м² · участок 12 сот.</small>
+            <small><span class="metro">Ⓜ</span> Баррикадная · 7 мин.</small>
+            <small>Москва, Поварская улица, 33</small>
           </div>
           <span class="ad-status">Опубликовано</span>
         </div>
@@ -497,11 +511,11 @@ a:hover{text-decoration:underline}
           <div class="acc" id="accPromo">
             <button type="button" class="acc-head" data-acc="promo">
               <span class="acc-ico">🎁</span>
-              <span class="acc-title">Ввести промо-код</span>
+              <span class="acc-title">Ввести промокод</span>
               <span class="acc-chev">⌄</span>
             </button>
             <div class="acc-body">
-              <input class="fld-input" id="promoInput" type="text" placeholder="Введите промо-код" autocomplete="off">
+              <input class="fld-input" id="promoInput" type="text" placeholder="Введите промокод" autocomplete="off">
               <div class="acc-actions">
                 <button class="btn" data-promo-apply>Применить</button>
                 <a href="#" data-acc-close>Отмена</a>
@@ -544,7 +558,7 @@ a:hover{text-decoration:underline}
         </svg>
       </div>
       <h3 id="mwTitle">Скидка 20% на публикацию ваша</h3>
-      <p>Автоматически уменьшим цену, когда будете размещать следующие <span id="promoLeftWin">6</span> объявлений</p>
+      <p>Автоматически уменьшим цену у следующего объявления, которое будете размещать не из пакета</p>
       <button class="btn" data-go="s3">Разместить объявление</button>
       <a class="close-link" href="#" data-close>Закрыть</a>
     </div>
@@ -555,7 +569,7 @@ a:hover{text-decoration:underline}
     <div class="modal">
       <button class="x" data-close aria-label="Закрыть">×</button>
       <h3 id="mpTitle">Активные промокоды</h3>
-      <div class="pc"><b>−20% на публикацию <span id="promoLeft">6</span> объявлений</b><span>SPO2OUPGT9A</span><small>Действует до 15.10.2026</small></div>
+      <div class="pc"><b>−20% на публикацию 1 объявления</b><span>SPO2OUPGT9A</span><small>Действует до 18.10.2026</small></div>
       <div style="display:flow-root"><button class="btn" style="float:right;margin-top:18px" data-close>Понятно</button></div>
     </div>
   </div>
@@ -807,10 +821,10 @@ a:hover{text-decoration:underline}
 
   function setPublished(on){
     published = on;
-    document.getElementById('promoLeft').textContent = on ? '5' : '6';
-    document.getElementById('promoLeftWin').textContent = on ? '5' : '6';
-    document.getElementById('adsEmpty').hidden = on;
     document.getElementById('adsRow').hidden = !on;
+    // промокод использован — ссылка на активные промокоды и введённый код пропадают
+    document.getElementById('promoLinkB').hidden = on;
+    if(on) document.getElementById('promoInput').value = '';
   }
   function setPromoApplied(on){
     if(!on) document.getElementById('promoInput').value = '';
